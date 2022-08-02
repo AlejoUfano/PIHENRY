@@ -3,10 +3,17 @@ import { connect } from "react-redux";
 import { postDog, getTemperaments } from '../../redux/actions/actions.js'
 import Select from 'react-select'
 import NavBar from '../NavBar/NavBar.jsx'
-import { CreateContainer, } from '../Styles/Create.style.js'
+import SuccessPopUp from '../SuccessPopUp/SuccessPopUp.jsx'
+import { Card } from '../Card/Card.jsx';
+import { CreateContainer, Placeholder, TempsContainer, FormContainer, FormTitle, CreateButton, PreviewTitle, Temp, PreviewCardContainer, FormInput, HeightWeight, HeightWeightContainer, ErrorMessage, PreviewContainer, SelectContainer } from '../Styles/Create.style.js'
+import DropdownMulti from '../DropdownMulti/DropdownMulti.jsx';
+import { Icon } from '../Styles/Home.style.js';
 
-let Create = ({postDog, getTemperaments,temperaments}) => {
+let Create = ({ postDog, getTemperaments, temperaments }) => {
+  
   let [errors, setErrors] = useState({})
+  let [temps, setTemps] = useState([])
+  let [created,setCreated] = useState(false)
   let [dog, setDog] = useState({
     name:'',
     minHeight:'',
@@ -16,15 +23,11 @@ let Create = ({postDog, getTemperaments,temperaments}) => {
     age:'',
     image:'',
     temperaments:''
-  })
-
-  let [created,setCreated] = useState(false)
+  }) 
 
   useEffect(() => {
     getTemperaments()
   },[])
-
-  console.log('TEMPERAMENTS', temperaments);
 
   let handleChange = (e) => {
     e.preventDefault()
@@ -83,60 +86,63 @@ let Create = ({postDog, getTemperaments,temperaments}) => {
     }
     return errors
   }
-  // ============================= SELECT BAR ==============================
-  let [temps, setTemps] = useState([])
-  let allTemperaments = temperaments.map((e,i)=>{return{value:i+2,label:e}})
-  
-  // ============================= SELECT BAR ==============================
-  
   console.log('TEMPERAMENTS LENGTH', temperaments.length);
-  // console.log('DOC.FORM.INPUT',document.getElementById('name').value);
-  if(created===true)return(<>DOG CREATED SUCCESSFULLY!!!</>)
   return (
-    <CreateContainer>
+    <div>
       <NavBar/>
-      <form>
-              <div>
-                <label for='name'>Name: </label>
-                <input type="text" placeholder='Name' id='name' name='name' required={true} onChange={(e)=>{handleChange(e)}} />
-                <span>{errors.name}</span>
-              </div>
-              <div>
-                <label for='Height'>Height: </label>
-                <input type="number" placeholder='Min height' name='minHeight' required={true} min='0' onChange={(e)=>{handleChange(e)}} />
-                <input type="number" placeholder='Max height' name='maxHeight' required={true} min='0' onChange={(e)=>{handleChange(e)}} />
-                <span>{errors.height}</span>
-              </div>
-              <div>
-                <label for='Weight'>Weight: </label>
-                <input type="number" placeholder='Min weight' name='minWeight' required={true} min='0' onChange={(e)=>{handleChange(e)}} />
-                <input type="number" placeholder='Max weight' name='maxWeight' required={true} min='0' onChange={(e)=>{handleChange(e)}} />
-                <span>{errors.weight}</span>
-              </div>
-              <div>
-                <label for='age'>Age: </label>
-                <input type="number" placeholder='Age' name='age' required={true} min='0' onChange={(e)=>{handleChange(e)}} />
-                <span>{errors.age}</span>
-              </div>
-              <div>
-                <label for='image'>Image: </label>
-                <input type="text" placeholder='Image URL' name='image' required={true} onChange={(e)=>{handleChange(e)}} />
-                <span>{errors.image}</span>
-              </div>
-              <div>
-              <label for='temperaments'>Temperaments: </label>
-              <Select isMulti onChange={(e)=>{setTemps(e.map(e=>e.value-1))}} options={allTemperaments}/>
-              <span>{!temps.length?'You must select at least one temperament':console.log('TEMPS FROM SELECT SPAN:',temps)}</span>          
-              </div>
-              <div>
-                {
-                  !Object.keys(errors).length && dog.age && temps.length
-                  ?<button type='submit' onClick={(e)=>{handleSubmit(e)}}>Create</button>
-                  :null
-                }            
-              </div>            
-      </form>
-    </CreateContainer>
+      <CreateContainer>        
+        <FormContainer>
+          <FormTitle>Create your dog!</FormTitle>
+                <div>
+                  <FormInput type="text" placeholder='Name' id='name' name='name' required={true} onChange={(e)=>{handleChange(e)}}/>
+                  <ErrorMessage>{errors.name}</ErrorMessage>
+                </div>
+                <HeightWeightContainer>
+                  <HeightWeight type="number" placeholder='Min height' name='minHeight' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
+                  <HeightWeight type="number" placeholder='Max height' name='maxHeight' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
+                </HeightWeightContainer>
+                <ErrorMessage>{errors.height}</ErrorMessage>
+                <HeightWeightContainer>
+                  <HeightWeight type="number" placeholder='Min weight' name='minWeight' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
+                  <HeightWeight type="number" placeholder='Max weight' name='maxWeight' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
+                </HeightWeightContainer>
+                <ErrorMessage>{errors.weight}</ErrorMessage>
+                <div>
+                  <FormInput type="number" placeholder='Age' name='age' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
+                  <ErrorMessage>{errors.age}</ErrorMessage>
+                </div>
+                <div>
+                  <FormInput type="text" placeholder='Image URL' name='image' required={true} onChange={(e)=>{handleChange(e)}}/>
+                  <ErrorMessage>{errors.image}</ErrorMessage>
+                </div>
+                <TempsContainer>
+                  {temps?.map(e=><><Temp onClick={()=>setTemps(temps.filter(t=>t!==e))}>{temperaments[e-1]} ✖️</Temp></>)}
+                </TempsContainer>
+                {!temps.length?<Placeholder>Select...</Placeholder>:null}
+                <DropdownMulti setTemps={setTemps} temps={temps} temperaments={temperaments}/>
+                <ErrorMessage>{!temps?.length&&errors.image?'You must select at least one temperament':null}</ErrorMessage>                
+                <div>
+                  {
+                   <CreateButton type='submit' onClick={(e)=>{if(!Object.keys(errors).length && dog.age && temps.length)handleSubmit(e)}}>Create</CreateButton>
+                  }            
+                </div>            
+        </FormContainer>
+        <PreviewContainer>
+          <PreviewTitle>Preview</PreviewTitle>
+                  <PreviewCardContainer>
+                  <Card dog={{
+      name:dog.name,
+      image:dog.image,
+      temperament:`${temps.map(e=>temperaments[e-1])}`,
+      height:`${dog.minHeight} - ${dog.maxHeight}`,
+      weight:`${dog.minWeight} - ${dog.maxWeight}`,
+      age:dog.age,
+    }}/>  
+                  </PreviewCardContainer>
+        </PreviewContainer>
+      </CreateContainer>
+      {created===true?<SuccessPopUp message='Success: Dog created successfully!'/>:null}
+    </div>
   )
 }
 

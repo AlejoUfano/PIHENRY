@@ -2,21 +2,39 @@ import styled from "styled-components";
 import {KeyboardArrowLeft} from '@styled-icons/material-rounded/KeyboardArrowLeft'
 import {KeyboardArrowRight} from '@styled-icons/material-rounded/KeyboardArrowRight'
 import {BsSearch} from 'react-icons/bs'
+import { IoClose } from "react-icons/io5";
 
 export let GlobalHomeContainer = styled.div`
-//height:91.8vh;
-/* border: 5px solid green; */
 display: flex;
 background-color: #efeef1;
+
 `
 export let Icon = styled.div``
+Icon.Close = styled(IoClose)`
+height: 20px;
+width: auto;
+display: flex;
+position: absolute;
+background-color: transparent;
+top: 33.9%;
+left: 21%;
+color: #000;
+z-index: 5;
+transition: all 0.4s 0s ease;
+&:hover{
+  transform: scale(1.1);
+  background-color: transparent;
+  cursor: pointer;
+}
+`
 Icon.Prev = styled(KeyboardArrowLeft)`
 width: 100%;
 height: 100%;
 border-radius: 15px;
 color: #4f4f4f;
+transition: all 0.4s 0s ease;
 &:hover{
-    color: white;
+    color: #fff;
 }
 `
 Icon.Next = styled(KeyboardArrowRight)`
@@ -24,8 +42,9 @@ width: 100%;
 height: 100%;
 border-radius: 15px;
 color: #4f4f4f;
+transition: all 0.4s 0s ease;
 &:hover{
-    color: white;
+    color: #fff;
 }
 `
 Icon.Search = styled(BsSearch)`
@@ -34,8 +53,9 @@ width: auto;
 color: #4f4f4f;
 display: flex;
 position: absolute;
-top: 218px;
-left: 465px;
+top: 225px;
+left: 472px;
+transition: all 0.4s 0s ease;
 &:hover{
   cursor: pointer;
   color: #000;
@@ -47,7 +67,6 @@ margin-right: 150px;
 margin-top: 150px;
 margin-bottom: 20px;
 margin-left: 5px;
-/* border: 1px solid red; */
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
@@ -55,10 +74,22 @@ justify-content: center;
 width: 1400px;
 height: 810px;
 transition: all 0.4s 0s ease;
-
-/* @media (max-width: 1080px) {
-    margin-right: 50px;
-} */
+`
+export let Placeholder = styled.div`
+font-family: 'Lato', sans-serif;
+font-weight: 100;
+display: flex;
+position: absolute;
+top: 33.8%;
+left: 14.3%;
+z-index: 6;
+width: 40px;
+height: 20px;
+padding-left: 10px;
+padding-right: 100px;
+padding-bottom: 8px;
+background-color: #efeef1;
+color: #757575;
 `
 export let SelectContainer = styled.div`
 width: 250px;
@@ -105,16 +136,14 @@ background: transparent;
 border-radius: 4px;
 box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
 width: 206px; 
-height: 18px;
+height: 31px;
 opacity: 3;
 border: 2px solid #4f4f4f;
 &::placeholder{
   font-family: 'Lato', sans-serif;
   font-weight: 100;
-  bottom: -1px;
-    margin: 0;
-    padding: 0;
-    left: -10px;
+  bottom: 0px;
+    left: 0px;
     opacity: 3;
     position: relative;
 }
@@ -157,10 +186,49 @@ export let PaginationButton = styled.button`
   transform: translateY(0);
 }
 `
+export let CreateText = styled.div`
+font-family: 'Ubuntu', sans-serif;
+font-size: 25px;
+display: flex;
+flex-direction: column;
+align-self: center;
+justify-content: center;
+align-self: center;
+align-content: center;
+text-align: center;
+color: #4f4f4f;
+margin-top: 7px;
+`
 export let CreateDog = styled.div`
-text-decoration: none;
-color: black;
-border: 1px solid red;
+appearance: none;
+color: #4f4f4f;
+background-color: transparent;
+border: 2px solid #4f4f4f;
+border-radius: 15px;
+box-sizing: border-box;
+cursor: pointer;
+display: flex;
+justify-content: center;
+margin-left: 34%;
 margin-top: 15%;
-font-size: 20px;
+height: 55px;
+outline: none;
+transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+width: 250px;
+font-size: 25px;
+padding-top: 4px;
+&:hover {
+    color: #fff;
+    background-color: #4f4f4f;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+&:active {
+    box-shadow: none;
+    transform: translateY(0);
+    color: #fff;
+}
+&:hover ${CreateText}{
+  color: #fff;
+}
 `

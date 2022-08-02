@@ -6,14 +6,18 @@
   list-style: none;
   text-decoration: none;
 }
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
 a {
   color: #000;
 }
 body{
   font-family: 'Lato', sans-serif; 
-  color: black;
+  color: #000;
   background-color: #efeef1;
-
 }
 .main-menu {
   display: flex;
@@ -25,8 +29,6 @@ body{
   background-color: #4f4f4f;
   cursor: pointer;
 }
-
-
 .filter-buttons {
   z-index: 10;
   margin-top: -28px;
@@ -36,11 +38,6 @@ body{
   display: flex;
   float: right;
 }
-/* nav{
-  height: 0px;
-  width: 0px;
-  background: none;  
-} */
 nav ul{
   border-radius: 8px;
   float: right;
@@ -52,25 +49,25 @@ nav ul li{
 }
 nav ul li div{
   border-radius: 10px;
-  color: white;
+  color: #fff;
   display: block;
   padding: 0 15px;
   line-height: 50px;
   font-size: 15px;
   background-color:rgba(0, 0, 0, 0.8);
-  transition: .5s;
+  transition: all 0.4s 0s ease;
   cursor: pointer;
 }
 nav ul li div:hover,
 nav ul li div.active{
   background-color:rgba(255, 255, 255, 0.8);
-  color: black;
+  color: #000;
 }
 nav ul ul{
   border-radius: 8px;
   position: absolute;
   top: 85px;
-  border-top: 3px solid white;
+  border-top: 3px solid #fff;
   opacity: 0;
   visibility: hidden;
 }
@@ -79,7 +76,7 @@ nav ul li:hover > ul{
   top: 70px;
   opacity: 1;
   visibility: visible;
-  transition: .3s linear;
+  transition: all 0.4s 0s ease;
 }
 nav ul ul li{
   border-radius: 8px;
@@ -107,13 +104,167 @@ nav ul ul li a i{
   border-radius: 8px;
   margin-left: 45px;
 }
-
 .icon {
   display: flex;
   width: auto;
   margin: 0;
-  color: black;
+  color: #4f4f4f;
 }
-.icon:hover {
-  color: white;
+.main-menu:hover .icon{
+  color: #fff;
+}
+
+details {
+  margin-left: 162px;
+	position: relative;
+	width: 246px;
+  border: 2px solid #4f4f4f;
+  border-radius: 4px;
+	margin-right: 1rem;
+  transition: all 0.4s 0s ease;
+  display: flex;
+  padding-bottom: 7px;
+}
+details:hover{
+  border: 2px solid #000;
+}
+
+details[open] {
+	z-index: 1;
+}
+
+summary {
+	padding: 1rem;
+	cursor: pointer;
+	border-radius: 4px;
+	background-color: transparent;
+	list-style: none;
+  height: 12px;
+  transition: all 0.4s 0s ease;
+}
+
+summary::-webkit-details-marker {
+	display: none;
+}
+
+details[open] summary:before {
+	content: '';
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	background: transparent;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+summary:after {
+	content: '';
+	display: inline-block;
+	float: right;
+	width: .5rem;
+	height: .5rem;
+	border-bottom: 1px solid currentColor;
+	border-left: 1px solid currentColor;
+	border-bottom-left-radius: 2px;
+	transform: rotate(45deg) translate(50%, 0%);
+	transform-origin: center center;
+	transition: transform ease-in-out 100ms
+}
+
+summary:focus {
+	outline: none;
+}
+
+details[open] summary:after {
+	transform: rotate(-45deg) translate(0%, 0%);
+}
+
+.list {
+	width: 100%;
+	background: #ddd;
+	position: absolute;
+	top: calc(100% + .5rem);
+	left: 0;
+	padding: 1rem;
+	margin: 0;
+	box-sizing: border-box;
+	border-radius: 5px;
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+.li {
+	margin: 0;
+	padding: 1rem 0;
+	border-bottom: 1px solid #ccc;
+  transition: all 0.4s 0s ease;
+}
+
+.li:first-child {
+	padding-top: 0;
+}
+
+.li:last-child {
+	padding-bottom: 0;
+	border-bottom: none;
+}
+.li:hover {
+  color: #000;
+  font-weight: bold;
+}
+
+/* FAKE SELECT */
+
+.radios {
+	counter-reset: radios;
+}
+
+.radios:before {
+	content: var(--selection);
+}
+
+input[type=radio] {
+	counter-increment: radios;
+	appearance: none;
+	display: none;
+}
+
+input[type=radio]:checked {
+	display: inline;
+	--display: block;
+}
+
+input[type=radio]:after {
+	content: attr(title);
+	display: inline;
+	font-size: 1rem;
+}
+
+.list {
+	counter-reset: labels;
+}
+
+.label {
+	width: 100%;
+	display: flex;
+	cursor: pointer;
+	justify-content: space-between;
+}
+
+.label span {
+	--display: none;
+	display: var(--display);
+	width: 1rem;
+	height: 1rem;
+	border: 1px solid #727272;
+	border-radius: 3px;
+}
+
+#create {
+  background-color: #969696;
+  border: 2px solid #828282;
+  width: 70.8%;
+  margin-left: 15%;
+  margin-bottom: 0;
 }

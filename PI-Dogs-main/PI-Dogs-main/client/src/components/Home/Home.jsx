@@ -7,15 +7,17 @@ import Loading from '../Loading/Loading.jsx';
 import Select from 'react-select'
 import NavBar from '../NavBar/NavBar.jsx'
 import { BsFilterRight } from "react-icons/bs";
-import { Pagination, PaginationButton, Icon, SearchBar, FilterComponent, CreateDog, OptionsContainer, SelectContainer, GlobalHomeContainer, HomeCardsContainer } from '../Styles/Home.style.js'
+import Dropdown from '../Dropdown/Dropdown.jsx'
+import { Pagination, Placeholder, PaginationButton, Icon, SearchBar, FilterComponent, CreateDog, CreateText, OptionsContainer, SelectContainer, GlobalHomeContainer, HomeCardsContainer } from '../Styles/Home.style.js'
 
 let Home = ({getDogs, getDogByName, getTemperaments, dogs, temperaments}) => {  
 
     let [dog, setDog] = useState('')
     let [ordered, setOrdered] = useState('NAMEASC')
-    let [temps,setTemps] = useState()
+    let [temps,setTemps] = useState(null)
     let [page, setPage] = useState(0)
     let [apiOrDB, setApiOrDB] = useState('')
+    let [dbDogs, setDbDogs] = useState(false)
 
     useEffect(() => {
      
@@ -35,28 +37,10 @@ let Home = ({getDogs, getDogByName, getTemperaments, dogs, temperaments}) => {
       e.target.input.value=''
       await setPage(0)
     }   
-    let styles = {
-      control: (base, state) => ({        
-        ...base,
-        border: '2px solid #4f4f4f',
-        height:'42px',
-        background: 'transparent',
-        transition: 'none',
-        boxShadow: state.isFocused ? 0 : 0,
-        '&:hover': {
-           border: '2px solid #000',
-           cursor: 'pointer'
-        },
-        '&:active':{
-          cursor: 'pointer'
-        }
-    })
-    }; 
 let sortedDogs = []
 if(apiOrDB==='API')sortedDogs=dogs.filter(e=>typeof e.id === 'number')
 if(apiOrDB==='DB')sortedDogs=dogs.filter(e=>typeof e.id === 'string')
 if(apiOrDB==='')sortedDogs=dogs
-let allTemperaments = temperaments.map((e,i)=>{return{value:i+2,label:e}})
 if(ordered==='NAMEASC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0).reverse()
 if(ordered==='NAMEDESC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0)
 if(ordered==='WEIGHTDESC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse()
@@ -64,12 +48,14 @@ if(ordered==='WEIGHTASC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page
 if(temps){
   let exists=dogs.filter(e=>e.temperament?.includes(temps))
   exists.length?sortedDogs=exists.slice(0,8):alert('NOT FOUND!')
+  let checkDbDogs = dogs.filter(e=>typeof e.id === 'string')
 }
+console.log('temps changes:', temps);
 
 if(!dogs.length) return (<Loading/>)
   return (
     <>
-      <NavBar  setPage={setPage} setTemps={setTemps}/>
+      <NavBar  setPage={setPage} setTemps={setTemps} setApiOrDB={setApiOrDB} setOrdered={setOrdered}/>
       
       <GlobalHomeContainer>
               <Pagination>
@@ -77,23 +63,20 @@ if(!dogs.length) return (<Loading/>)
                 <PaginationButton onClick={()=>(page<Math.ceil(dogs.length/8)-1)?setPage(page+=1):null}><Icon.Next size={40}/></PaginationButton>
               </Pagination>
             <FilterComponent>
-                <Filters setOrdered={setOrdered} setApiOrDB={setApiOrDB}/>
+                <Filters setOrdered={setOrdered} setApiOrDB={setApiOrDB} dogs={dogs}/>
             </FilterComponent>  
             <OptionsContainer>          
               <form onSubmit={(e)=>{handleSubmit(e)}}>
                   <SearchBar placeholder="Search..." type="text" name='input'onChange={(e)=>{handleChange(e)}}/> 
-                  <button type='submit'><Icon.Search/></button>
-                                         
-              </form>          
-              <SelectContainer>
-                <Select styles={styles} isMulti={false} placeholder='Select...' className={"mdc-react-select"} onChange={(e)=>{setTemps(e?.label);}} isClearable={true} options={allTemperaments}/>
-              </SelectContainer>
+                  <button type='submit'><Icon.Search/></button>                                         
+              </form>
+              <Dropdown setTemps={setTemps} temps={temps} temperaments={temperaments}/>
+              {!temps?.length?<Placeholder>Select...</Placeholder>:<Icon.Close onClick={()=>setTemps(null)}/>}  
               <CreateDog>
                 <Link to='/create'>
-                <div>Create Dog</div>          
+                <CreateText>Create Dog</CreateText>          
                 </Link> 
-              </CreateDog>  
-              
+              </CreateDog>                
             </OptionsContainer>  
           <HomeCardsContainer>
             {dogs?sortedDogs.map(dog=><Card dog={dog}/>):'NO DOGS'}
@@ -104,7 +87,7 @@ if(!dogs.length) return (<Loading/>)
 }
 
 //========================FILTER MENU =============================
-let Filters = ({setOrdered,setApiOrDB,checkDbDogs}) => {
+let Filters = ({setOrdered,setApiOrDB,dogs}) => {
   return (
     <div className='dropdown'>
         <nav>
@@ -126,7 +109,7 @@ let Filters = ({setOrdered,setApiOrDB,checkDbDogs}) => {
                   <li><div>📁 Source</div>
                      <ul>
                         <li><div onClick={()=>setApiOrDB('API')}>API</div></li>
-                        <li><div onClick={()=>checkDbDogs?.length?setApiOrDB('DB'):alert('THE DATABASE IS EMPTY')}>DB</div></li>
+                        <li><div onClick={()=>dogs.filter(e=>typeof e.id === 'string').length?setApiOrDB('DB'):alert('THE DATABASE IS EMPTY')}>DB</div></li>
                      </ul>
                   </li>
                </ul>

@@ -79,7 +79,7 @@ app.get('/dogs/:id', async (req, res) => {
                 temperament:filteredDbDogs[0].tempers.map(e=>e.name).toString(),
                 weight:filteredDbDogs[0].weight,
                 height:filteredDbDogs[0].height,
-                image:null,
+                image:filteredDbDogs[0].image,
                 age:filteredDbDogs[0].age
     }])
     await axios.get('https://api.thedogapi.com/v1/breeds')     
@@ -127,6 +127,7 @@ app.get('/temperaments', async (req,res) => {
 
 
 app.post('/dogs/create', async (req,res,next) => {
+    console.log('REQ.BODY /CREATE:', req.body);
     let {name, height, weight, age, temperaments, image} = req.body
     let dogExists = await Dog.findOne({where:{name}})
      if(dogExists)return res.status(404).send('Already exists a dog with this name')  
@@ -136,6 +137,7 @@ app.post('/dogs/create', async (req,res,next) => {
             weight,
             age,
             image,
+            temperaments
         })
         .then(async(dog)=>{
             console.log('NEW DOG CREATED INFO:', dog);

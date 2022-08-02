@@ -8,7 +8,7 @@ import {IoMenu, IoClose} from 'react-icons/io5'
 import Loading from '../Loading/Loading.jsx';
 
 
-let NavBar = ({getDogs, setPage, setTemps}) => {
+let NavBar = ({ getDogs, setPage, setTemps, setApiOrDB, setOrdered }) => {
   
   let [extendNav, setExtendNav] = useState(false);
   const [isDisplayed, setIsDisplayed] = useState(false);
@@ -31,13 +31,15 @@ useEffect(() => {
                 await setIsDisplayed(true)              
                 if(setPage) await setPage(0)                
                 if(setTemps)await setTemps()
+                if(setApiOrDB) await setApiOrDB('')
+                if(setOrdered) await setOrdered('NAMEASC')
                 }} alt="not found"/>
             </Link>
           </NavToHomeContainer>
         </LeftContainer>
         
         <RightContainer>
-          <NavLink to='/about'>ABOUT</NavLink>
+          <NavLink to='/'>LANDING</NavLink>
           <NavLink to='/contact'>CONTACT</NavLink>
           <OpenLinksButton  onClick={()=>{
             setExtendNav((curr)=>!curr) 

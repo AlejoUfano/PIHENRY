@@ -6,8 +6,7 @@ import Details from '../src/components/Details/Details.jsx'
 import Create from '../src/components/Create/Create.jsx'
 import Loading from './components/Loading/Loading.jsx';
 import Contact from './components/Contact/Contact.jsx'
-import About from './components/About/About.jsx'
-
+import Dropdown from './components/Dropdown/Dropdown.jsx'
 
 function App() {
   return (    
@@ -16,9 +15,9 @@ function App() {
         <Route path='/home' component={Home}/>
         <Route path='/dogs/:id' component={Details}/>
         <Route path='/create' component={Create}/>
-        <Route path='/about' component={About}/>
         <Route path='/contact' component={Contact}/>
         <Route path='/loading' component={Loading}/>
+        <Route path='/select' component={Dropdown}/>
       </Router>    
   );
 }
