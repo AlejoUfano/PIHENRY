@@ -78,10 +78,9 @@ transition: all 0.4s 0s ease;
 export let Placeholder = styled.div`
 font-family: 'Lato', sans-serif;
 font-weight: 100;
-display: flex;
-position: absolute;
-top: 33.8%;
-left: 14.3%;
+position: fixed;
+top: 340px;
+left: 273px;
 z-index: 6;
 width: 40px;
 height: 20px;

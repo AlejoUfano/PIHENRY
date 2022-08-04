@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { useParams } from "react-router-dom"
-import { connect } from "react-redux";
+import { useParams } from 'react-router-dom'
+import { connect } from 'react-redux';
 import { getDogDetails } from '../../redux/actions/actions.js'
 import Loading from '../Loading/Loading.jsx';
 import NavBar from '../NavBar/NavBar.jsx'
 import { FullDetailsContainer, ImageContainer, DetailsContainer, Image, DogTitle, NormalDetail, TemperamentsDiv, TempContainer, Temp, CardContainer } from '../Styles/Details.style.js'
 
-let Details = ({getDogDetails, details}) => {
+let Details = ({ getDogDetails, details }) => {
 
     let {id} = useParams()  
   
@@ -22,20 +22,20 @@ let Details = ({getDogDetails, details}) => {
       <>
         <NavBar/>
         <FullDetailsContainer>
-        <CardContainer>
+          <CardContainer>
           DOG DETAILS
-        <ImageContainer>
-          <Image src={details[0].image} alt='img'/>
-          </ImageContainer>
-          <DetailsContainer>
-          <DogTitle>{details[0].name}</DogTitle>
-          <NormalDetail>Age: {details[0].age}</NormalDetail>
-          <NormalDetail>Weight: {details[0].weight}</NormalDetail>
-          <NormalDetail>Height: {details[0].height}</NormalDetail>   
-          <TemperamentsDiv>Temperaments</TemperamentsDiv>     
-          <TempContainer>{details[0].temperament?.split(',').slice(0,6).map(e=><Temp>{e}</Temp>)}</TempContainer>  
-          </DetailsContainer>  
-        </CardContainer>    
+            <ImageContainer>
+              <Image src={details[0].image} alt='img'/>
+            </ImageContainer>
+            <DetailsContainer>
+              <DogTitle>{details[0].name}</DogTitle>
+              <NormalDetail>Age: {details[0].age}</NormalDetail>
+              <NormalDetail>Weight: {details[0].weight}</NormalDetail>
+              <NormalDetail>Height: {details[0].height}</NormalDetail>   
+              <TemperamentsDiv>Temperaments</TemperamentsDiv>     
+              <TempContainer>{details[0].temperament?.split(',').slice(0,6).map(e=><Temp>{e}</Temp>)}</TempContainer>  
+            </DetailsContainer>  
+          </CardContainer>    
         </FullDetailsContainer>        
       </>
     )
@@ -46,20 +46,20 @@ let Details = ({getDogDetails, details}) => {
       <FullDetailsContainer>   
         <CardContainer>
           DOG DETAILS
-        <ImageContainer>
+          <ImageContainer>
           <Image src={details[0].image} alt='img'/>
-        </ImageContainer>
-        <DetailsContainer>
-          <DogTitle>    {details[0].name}</DogTitle>        
-          {details[0].origin?<NormalDetail>Origin: {details[0].origin}</NormalDetail>:null}  
-          <NormalDetail>Bred For: {details[0].bred_for}</NormalDetail>
-          <NormalDetail>Breed Group: {details[0].breed_group}</NormalDetail>
-          <NormalDetail>Life Span: {details[0].lifeSpan}</NormalDetail>   
-          <NormalDetail>Weight: {details[0].weight}</NormalDetail>
-          <NormalDetail>Height: {details[0].height}</NormalDetail>                 
-          <TemperamentsDiv>Temperaments</TemperamentsDiv>
-          <TempContainer>{details[0].temperament?.split(',').slice(0,6).map(e=><Temp>{e}</Temp>)}</TempContainer>
-        </DetailsContainer>
+          </ImageContainer>
+          <DetailsContainer>
+            <DogTitle>{details[0].name}</DogTitle>        
+            {details[0].origin?<NormalDetail>Origin: {details[0].origin}</NormalDetail>:null}  
+            <NormalDetail>Bred For: {details[0].bred_for}</NormalDetail>
+            <NormalDetail>Breed Group: {details[0].breed_group}</NormalDetail>
+            <NormalDetail>Life Span: {details[0].lifeSpan}</NormalDetail>   
+            <NormalDetail>Weight: {details[0].weight}</NormalDetail>
+            <NormalDetail>Height: {details[0].height}</NormalDetail>                 
+            <TemperamentsDiv>Temperaments</TemperamentsDiv>
+            <TempContainer>{details[0].temperament?.split(',').slice(0,6).map(e=><Temp>{e}</Temp>)}</TempContainer>
+          </DetailsContainer>
         </CardContainer>   
       </FullDetailsContainer>
     </>

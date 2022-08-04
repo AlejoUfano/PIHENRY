@@ -1,13 +1,20 @@
 import styled from "styled-components";
-import {GrStatusGood, GrFormClose} from 'react-icons/gr'
+import { GrStatusGood, GrFormClose } from 'react-icons/gr'
+import { BiErrorCircle } from 'react-icons/bi'
 
 export let Icon = styled.div`
+`
+Icon.Error = styled(BiErrorCircle)`
+height: 40px;
+width: auto;
+margin-right: 10px;
 `
 Icon.Ok = styled(GrStatusGood)`
 height: 40px;
 width: auto;
 margin-right: 10px;
 `
+
 Icon.Close = styled(GrFormClose)`
 color: #000;
 height: 40px;
@@ -64,5 +71,11 @@ text-shadow: 1px 5px 10px rgb(0 0 0 / 20%);
         transform: translateY(-10px);
     }  
 }
-
+`
+export let ErrorAlert = styled(Alert)`
+background-color: #a12731;
+border-left: 20px solid #751a23;
+&:hover{
+    box-shadow: 3px 10px 20px rgb(161 39 49 / 80%);
+}
 `

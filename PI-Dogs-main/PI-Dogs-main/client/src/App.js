@@ -6,7 +6,6 @@ import Details from '../src/components/Details/Details.jsx'
 import Create from '../src/components/Create/Create.jsx'
 import Loading from './components/Loading/Loading.jsx';
 import Contact from './components/Contact/Contact.jsx'
-import Dropdown from './components/Dropdown/Dropdown.jsx'
 
 function App() {
   return (    
@@ -17,7 +16,6 @@ function App() {
         <Route path='/create' component={Create}/>
         <Route path='/contact' component={Contact}/>
         <Route path='/loading' component={Loading}/>
-        <Route path='/select' component={Dropdown}/>
       </Router>    
   );
 }

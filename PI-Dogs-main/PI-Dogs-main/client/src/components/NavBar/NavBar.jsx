@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import logoImg from '../../assets/pawLogoB.png'
 import { Link } from 'react-router-dom';
 import {NavContainer, LeftContainer, RightContainer, Logo, NavMenu, NavExpandedMenu, NavToHomeContainer, NavLink, OpenLinksButton, NavLinkExtended} from '../Styles/NavBar.styles.js'
 import { getDogs } from '../../redux/actions/actions';
 import { connect } from 'react-redux';
-import {IoMenu, IoClose} from 'react-icons/io5'
+import { IoMenu, IoClose } from 'react-icons/io5'
 import Loading from '../Loading/Loading.jsx';
 
 
@@ -33,7 +33,7 @@ useEffect(() => {
                 if(setTemps)await setTemps()
                 if(setApiOrDB) await setApiOrDB('')
                 if(setOrdered) await setOrdered('NAMEASC')
-                }} alt="not found"/>
+                }} alt='not found'/>
             </Link>
           </NavToHomeContainer>
         </LeftContainer>
@@ -50,7 +50,7 @@ useEffect(() => {
 
       {extendNav&&(
         <NavExpandedMenu>
-          <NavLinkExtended to='/about'>ABOUT</NavLinkExtended>
+          <NavLinkExtended to='/'>LANDING</NavLinkExtended>
           <NavLinkExtended to='/contact'>CONTACT</NavLinkExtended>
         </NavExpandedMenu>
       )}
@@ -60,7 +60,3 @@ useEffect(() => {
 }
 
 export default connect(null,{getDogs})(NavBar);
-
-
-//react icons color
-//style={{ fill: 'black' }}

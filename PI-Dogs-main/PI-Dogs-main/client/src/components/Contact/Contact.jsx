@@ -8,11 +8,7 @@ import SuccessPopUp from '../SuccessPopUp/SuccessPopUp.jsx'
 export default function Contact() {
   let [emailSent, setEmailSent] = useState(false)
   let [errors, setErrors] = useState({})
-  let [email, setEmail] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+  let [email, setEmail] = useState({name: '',email: '',message: ''})
   
   let sendEmail = (e) => {
     e.preventDefault();
@@ -25,6 +21,7 @@ export default function Contact() {
       })
       e.target.reset()
   }
+
   let handleChange = (e) => {
     e.preventDefault()
     setEmail({
@@ -38,6 +35,7 @@ export default function Contact() {
   console.log('email:', email);
   console.log('errors:', errors);
   }
+
   let formValidation = (email) => {
     let errors = {}
     if(!email.name){
@@ -57,48 +55,57 @@ export default function Contact() {
     }
     return errors
   }
+  
   console.log(Object.keys(errors).length);
 
   return (
     <>
         <NavBar/>        
         <ContactContainer>
+
           <ContactTitle>CONTACT</ContactTitle>
+
           <EmailContainer>            
               <form onSubmit={(!Object.keys(errors).length&&email.name.length)?sendEmail:null}>
                 <EmailField>
                 <EmailTitle>Send me a Message</EmailTitle>
+
                   <Input placeholder='Your name' name='name' onChange={(e)=>{handleChange(e)}}/>
                   <Error>{errors.name}</Error>
+
                   <Input placeholder='Your email' name='email' onChange={(e)=>{handleChange(e)}}/>
                   <Error>{errors.email}</Error>
+
                   <Message placeholder='Message' name='message' onChange={(e)=>{handleChange(e)}}/>
                   <Error>{errors.message}</Error>
+
                 </EmailField>
+
                 <SendButton type='submit'>SEND</SendButton>
               </form>
           </EmailContainer>
+
           <ContactInfoContainer>
               <ContactInfo>
                 <Icon.Location/><Info>Bahia Blanca, ARG</Info> 
                 <Icon.Mail/><Info>alejoufano@hotmail.com</Info>                
               </ContactInfo>
+
               <Separation/>
+
               <ContactIcons>
                 <Link to={{pathname: 'https://github.com/AlejoUfano'}} target='_blank'>                
                   <Icon.Git/>
                 </Link>
+
                 <Link to={{pathname: 'https://www.linkedin.com/in/alejo-ufano-837a68244/'}} target='_blank'>
-                <Icon.Linked/>
+                  <Icon.Linked/>
                 </Link>
               </ContactIcons>
+
           </ContactInfoContainer>
         </ContactContainer>
         {emailSent===true?<SuccessPopUp message='Success: Email sent successfully!'/>:null}
     </>
   )
 }
-
-
-//https://github.com/AlejoUfano
-//https://www.linkedin.com/in/alejo-ufano-837a68244/

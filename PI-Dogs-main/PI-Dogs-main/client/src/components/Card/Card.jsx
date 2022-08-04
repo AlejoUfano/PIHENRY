@@ -7,7 +7,7 @@ export function Card({dog}) {
   return (
     <Link to={`/dogs/${dog.id}`}>
     <CardContainer>
-      <CardImage src={dog.image?dog.image:error} width="240"  alt='error'/>     
+      <CardImage src={dog.image?dog.image:error} width='240'  alt='error'/>     
       <DogName>{dog.name?.split(' ').slice(0,3).join(' ')}</DogName>      
       <Weight>Weight (kg): {dog.weight}</Weight>
      <TempContainer>

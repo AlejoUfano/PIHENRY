@@ -27,7 +27,7 @@ app.get('/dogs', async (req, res, next) => {
                 image:e.image,
             }))
             console.log('get /dogs NUMBER OF DOGS:',getDogs.length);    
-            return res.json(getDogs)                           
+            return res.status(200).json(getDogs)                           
         })                
         .catch(e => {
             res.status(404).send('Error!')

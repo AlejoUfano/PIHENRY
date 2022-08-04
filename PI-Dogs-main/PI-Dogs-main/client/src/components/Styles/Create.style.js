@@ -220,14 +220,14 @@ justify-content: center;
 `
 export let Placeholder = styled.div`
 display: flex;
-position: absolute;
-top: 64%;
-left: 22.8%;
+position: fixed;
+top: 700px;
+left: 416px;
 width: 150px;
 height: 40px;
 background-color: #969696;
 justify-content: center;
 flex-direction: column;
 color: #515257;
-z-index: 1;
+z-index: 0;
 `
