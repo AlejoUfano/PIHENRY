@@ -150,6 +150,17 @@ app.post('/dogs/create', async (req,res,next) => {
         })        
 })
 
+app.delete('/dogs/delete/:id', async (req,res,next) =>{
+let {id} = req.params
+console.log(id);
+        try{
+           await Dog.destroy({where:{id:id}})
+            res.send('Dog deleted successfully')
+        } catch(e) {
+            res.status(404).send('Error')
+        }
+})
+
 
 
 module.exports = app

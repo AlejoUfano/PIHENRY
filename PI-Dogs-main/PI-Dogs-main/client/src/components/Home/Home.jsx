@@ -18,33 +18,37 @@ let Home = ({getDogs, getDogByName, getTemperaments, dogs, temperaments}) => {
     let [page, setPage] = useState(0)
     let [apiOrDB, setApiOrDB] = useState('')
     let [emptyDb, setEmptyDb] = useState(false)
+    let [notFind, setNotFind] = useState(false)
 
-    useEffect(() => {
-     
+    useEffect(() => {     
       console.log('USE EFFECT HOME ');  
       getTemperaments()    
       getDogs()              
     },[])
 
 
-    let handleChange=(e)=>{
+    let handleChange = (e) => {
       setDog(e.target.value)                                
     }
 
-    let handleSubmit=async (e)=>{
-      e.preventDefault()     
+    let handleSubmit = async (e) => {
+      e.preventDefault()
+      if(!dogs.filter(e=>e.name.toLowerCase().includes(dog.toLowerCase())).length){
+        setNotFind(true)
+      }
       await getDogByName(dog)
       e.target.input.value=''
       await setPage(0)
     }   
+let dogs2 = []
 let sortedDogs = []
 if(apiOrDB==='API')sortedDogs=dogs.filter(e=>typeof e.id === 'number')
 if(apiOrDB==='DB')sortedDogs=dogs.filter(e=>typeof e.id === 'string')
 if(apiOrDB==='')sortedDogs=dogs
 if(ordered==='NAMEASC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0).reverse()
 if(ordered==='NAMEDESC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0)
-if(ordered==='WEIGHTDESC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse()
-if(ordered==='WEIGHTASC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0)
+if(ordered==='WEIGHTDESC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse()
+if(ordered==='WEIGHTASC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0)
 if(temps){
   let exists=dogs.filter(e=>e.temperament?.includes(temps))
   exists.length?sortedDogs=exists.slice(0,8):alert('NOT FOUND!')
@@ -67,7 +71,8 @@ if(!dogs.length) return (<Loading/>)
                 <Filters setOrdered={setOrdered} setApiOrDB={setApiOrDB} dogs={dogs} setEmptyDb={setEmptyDb}/>
               </FilterComponent>  
 
-            <OptionsContainer>          
+            <OptionsContainer>   
+                     
               <form onSubmit={(e)=>{handleSubmit(e)}}>
                   <SearchBar placeholder='Search...' type='text' name='input'onChange={(e)=>{handleChange(e)}}/> 
                   <button type='submit'><Icon.Search/></button>                                         
@@ -86,7 +91,8 @@ if(!dogs.length) return (<Loading/>)
               {dogs?sortedDogs.map(dog=><Card dog={dog}/>):'NO DOGS'}
             </HomeCardsContainer> 
 
-      </GlobalHomeContainer>      
+      </GlobalHomeContainer>
+      {notFind?<ErrorPopUp message='Error: cant find a dog with this name' setNotFind={setNotFind}/>:null}
       {emptyDb?<ErrorPopUp message='Error: The database is empty' setEmptyDb={setEmptyDb}/>:null}
     </>
   )

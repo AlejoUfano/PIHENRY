@@ -103,29 +103,29 @@ let Create = ({ postDog, getTemperaments, temperaments, dogs }) => {
         <FormContainer>
           <FormTitle>Create your dog!</FormTitle>
                 <div>
-                  <FormInput type='text' placeholder='Name' id='name' name='name' required={true} onChange={(e)=>{handleChange(e)}}/>
+                  <FormInput type='text' placeholder='Name' id='name' name='name'   onChange={(e)=>{handleChange(e)}}/>
                   <ErrorMessage>{errors.name}</ErrorMessage>
                 </div>
 
                 <HeightWeightContainer>
-                  <HeightWeight type='number' placeholder='Min height' name='minHeight' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
-                  <HeightWeight type='number' placeholder='Max height' name='maxHeight' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
+                  <HeightWeight type='number' placeholder='Min height' name='minHeight'  min='0' onChange={(e)=>{handleChange(e)}}/>
+                  <HeightWeight type='number' placeholder='Max height' name='maxHeight'   min='0' onChange={(e)=>{handleChange(e)}}/>
                 </HeightWeightContainer>                
                 <ErrorMessage>{errors.height}</ErrorMessage>
                 
                 <HeightWeightContainer>
-                  <HeightWeight type='number' placeholder='Min weight' name='minWeight' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
-                  <HeightWeight type='number' placeholder='Max weight' name='maxWeight' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
+                  <HeightWeight type='number' placeholder='Min weight' name='minWeight'   min='0' onChange={(e)=>{handleChange(e)}}/>
+                  <HeightWeight type='number' placeholder='Max weight' name='maxWeight'   min='0' onChange={(e)=>{handleChange(e)}}/>
                 </HeightWeightContainer>
                 <ErrorMessage>{errors.weight}</ErrorMessage>
                 
                 <div>
-                  <FormInput type='number' placeholder='Age' name='age' required={true} min='0' onChange={(e)=>{handleChange(e)}}/>
+                  <FormInput type='number' placeholder='Age' name='age'   min='0' onChange={(e)=>{handleChange(e)}}/>
                   <ErrorMessage>{errors.age}</ErrorMessage>
                 </div>
 
                 <div>
-                  <FormInput type='text' placeholder='Image URL' name='image' required={true} onChange={(e)=>{handleChange(e)}}/>
+                  <FormInput type='text' placeholder='Image URL' name='image'   onChange={(e)=>{handleChange(e)}}/>
                   <ErrorMessage>{errors.image}</ErrorMessage>
                 </div>
 
