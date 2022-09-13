@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar.jsx'
-import { Icon, ContactContainer, EmailContainer, ContactInfoContainer, EmailTitle, Error, Info, ContactTitle, SendButton, EmailField, Separation, Message, ContactInfo, Input, ContactIcons } from '../Styles/Contact.style.js';
+import { Icon, ContactContainer, FormContainer, Location, Mail, GlobalContainer, EmailContainer, ContactInfoContainer, EmailTitle, Error, Info, ContactTitle, SendButton, EmailField, Separation, Message, ContactInfo, Input, ContactIcons } from '../Styles/Contact.style.js';
 import emailjs from 'emailjs-com';
 import SuccessPopUp from '../SuccessPopUp/SuccessPopUp.jsx'
 
@@ -59,53 +59,59 @@ export default function Contact() {
   console.log(Object.keys(errors).length);
 
   return (
-    <>
+    <GlobalContainer>
         <NavBar/>        
         <ContactContainer>
 
           <ContactTitle>CONTACT</ContactTitle>
 
-          <EmailContainer>            
-              <form onSubmit={(!Object.keys(errors).length&&email.name.length)?sendEmail:null}>
-                <EmailField>
-                <EmailTitle>Send me a Message</EmailTitle>
+          <FormContainer>
 
-                  <Input placeholder='Your name' name='name' onChange={(e)=>{handleChange(e)}}/>
-                  <Error>{errors.name}</Error>
+              <EmailContainer onSubmit={(!Object.keys(errors).length&&email.name.length)?sendEmail:null}>
+                  <EmailField>
+                  <EmailTitle>Send me a Message</EmailTitle>
+            
+                    <Input placeholder='Your name' name='name' onChange={(e)=>{handleChange(e)}}/>
+                    <Error>{errors.name}</Error>
+            
+                    <Input placeholder='Your email' name='email' onChange={(e)=>{handleChange(e)}}/>
+                    <Error>{errors.email}</Error>
+            
+                    <Message placeholder='Message' name='message' onChange={(e)=>{handleChange(e)}}/>
+                    <Error>{errors.message}</Error>
+            
+                  </EmailField>
+            
+                  <SendButton type='submit'>SEND</SendButton>
+              </EmailContainer>
 
-                  <Input placeholder='Your email' name='email' onChange={(e)=>{handleChange(e)}}/>
-                  <Error>{errors.email}</Error>
-
-                  <Message placeholder='Message' name='message' onChange={(e)=>{handleChange(e)}}/>
-                  <Error>{errors.message}</Error>
-
-                </EmailField>
-
-                <SendButton type='submit'>SEND</SendButton>
-              </form>
-          </EmailContainer>
-
-          <ContactInfoContainer>
-              <ContactInfo>
-                <Icon.Location/><Info>Bahia Blanca, ARG</Info> 
-                <Icon.Mail/><Info>alejoufano@hotmail.com</Info>                
-              </ContactInfo>
-
-              <Separation/>
-
-              <ContactIcons>
-                <Link to={{pathname: 'https://github.com/AlejoUfano'}} target='_blank'>                
-                  <Icon.Git/>
-                </Link>
-
-                <Link to={{pathname: 'https://www.linkedin.com/in/alejo-ufano-837a68244/'}} target='_blank'>
-                  <Icon.Linked/>
-                </Link>
-              </ContactIcons>
-
-          </ContactInfoContainer>
+            
+            <ContactInfoContainer>
+                <ContactInfo>
+                  <Location>
+                    <Icon.Location size={30}/><Info> Bahia Blanca, ARG</Info> 
+                  </Location>
+                  <Mail>
+                    <Icon.Mail size={30}/><Info>ufanoalejo@gmail.com</Info>   
+                  </Mail>             
+                </ContactInfo>
+            
+                <Separation/>
+            
+                <ContactIcons>
+                  <Link to={{pathname: 'https://github.com/AlejoUfano'}} target='_blank'>                
+                    <Icon.Git/>
+                  </Link>
+            
+                  <Link to={{pathname: 'https://www.linkedin.com/in/alejo-ufano-837a68244/'}} target='_blank'>
+                    <Icon.Linked/>
+                  </Link>
+                </ContactIcons>
+            
+            </ContactInfoContainer>
+          </FormContainer>
         </ContactContainer>
         {emailSent===true?<SuccessPopUp message='Success: Email sent successfully!'/>:null}
-    </>
+    </GlobalContainer>
   )
 }
