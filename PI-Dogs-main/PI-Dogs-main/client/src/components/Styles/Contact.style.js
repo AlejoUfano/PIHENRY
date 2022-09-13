@@ -6,24 +6,12 @@ export let Icon = styled.div``
 Icon.Mail = styled(IoMailOutline)`
 display: flex;
 color: #e6e6e6;
-height: 30px;
-width: auto;
-margin-top: 4px;
 transition: all 0.3s 0s ease;
-position: absolute;
-left: 0;
-top: 87px;
 `
 Icon.Location = styled(IoLocationOutline)`
 display: flex;
 color: #e6e6e6;
-height: 30px;
-width: auto;
-margin-top: 4px;
 transition: all 0.3s 0s ease;
-position: absolute;
-left: 0;
-top: 42px;
 `
 Icon.Git = styled(BsGithub)`
 display: flex;
@@ -49,53 +37,57 @@ transition: all 0.3s 0s ease;
     cursor: pointer;
 }
 `
+export let GlobalContainer = styled.div`
+display: flex;
+flex-direction: column;
+height: auto;
+`
+export let FormContainer = styled.div`
+display: flex;
+align-self: center;
+margin-top: 2vh;
+width: 60vw;
+height: 60%;
+`
 export let ContactContainer = styled.div`
 display: flex;
-position: absolute;
-top: 12%;
-left: 10%;
-width: 80%;
-height: 80%;
+align-self: center;
+margin-top: 10vh;
+flex-direction: column;
+height: 70vh;
+width: 80vw;
 background-color: #26272b;
 border-radius: 12px;
 box-shadow: 0 3px 7px rgb(0 0 0 / 20%);
 `
-export let EmailContainer = styled.div`
+export let EmailContainer = styled.form`
 display: flex;
-margin-left: 20%;
-width: 35%;
-height: 60%;
-position: absolute;
-top: 20%;
+width: 50%;
+justify-content: center;
+flex-direction: column;
 `
 export let ContactInfoContainer = styled.div`
 display: flex;
-width: 20%;
-height: 60%;
-position: absolute;
-top: 20%;
-left: 55%;
+align-items: center;
+justify-content: center;
+width: 50%;
+flex-direction: column;
 `
 export let ContactTitle = styled.div`
+align-self: center;
+margin-top: 8vh;
+height: fit-content;
 font-family: 'Ubuntu', sans-serif;
 display: flex;
 font-size: 50px;
-height: 70px;
-align-items: center;
-margin-top: 85px;
-padding: 3px;
-position: absolute;
-left: 44%;
 color: #efc32e;
 text-shadow: 0px 5px 5px rgb(239 194 46 / 20%);
 transition: all 0.4s 0s ease;
 &:hover{
     text-shadow: 0 5px 9px rgb(239 194 46 / 30%); 
     color: #f7cb36;
-    font-size: 52px;
-    left: 43.9%;
+    transform: scale(1.03);
 }
-
 `
 export let EmailTitle = styled.div`
 font-family: 'Ubuntu', sans-serif;
@@ -103,91 +95,79 @@ display: flex;
 height: 25px;
 width: auto;
 color: #efc32e;
-text-align: center;
-align-items: center;
-position: absolute;
-left: 30%;
-top: -8%;
+align-self: center;
+margin-top: 3%;
+margin-bottom: 3%;
 font-size: 25px;
 text-shadow: 0 5px 7px rgb(239 194 46 / 10%);
 transition: all 0.4s 0s ease;
 &:hover{
     text-shadow: 0 5px 9px rgb(239 194 46 / 30%); 
     color: #f7cb36;
-    transform: scale(1.01);
 }
 `
 export let SendButton = styled.button`
+align-self: center;
 appearance: none;
 color: #e6e6e6;
 background-color: transparent;
 border: 2px solid #e6e6e6;
-border-radius: 15px;
-box-sizing: border-box;
+border-radius: 6px;
 cursor: pointer;
-display: inline-block;
-margin-left: 15.3%;
-position: absolute;
-margin-top: 65.5%;
-height: 50px;
 outline: none;
 transition: all 0.4s 0s ease;
-width: 71%;
 font-size: 25px;
+padding: .2vw;
+width: 80%;
 &:hover {
-    color: #000;
+    color: #26272b;
     background-color: #e6e6e6;
     box-shadow: 2px 10px 17px rgba(0,0,0,0.6);
 }
 `
 export let EmailField = styled.div`
 display: flex;
-height: 65%;
-left: 2.5%;
-width: 95%;
-position: absolute;
 flex-direction: column;
 justify-content: center;
-top: 10%;
-padding: 0;
+align-self: center;
+width: 80%;
 `
 export let Separation = styled.div`
-top: 49%;
 display: flex;
-position: absolute;
-width: 90%;
 height: 2px;
 color: #e6e6e6;
+width: 45%;
+margin-top: .6vw;
 background-color: #e6e6e6;
 border-radius: 3px;
-left: 5%;
 `
 export let ContactInfo = styled.div`
 display: flex;
-position: absolute;
-top: 20%;
-width: 80%;
-left: 10%;
-height: 30%;
 flex-direction: column;
 justify-content: center;
+height: fit-content;
 `
+export let Mail = styled.div`
+display: flex;
+align-items: center;
+margin: .5vw;
+`
+export let Location = styled.div`
+display: flex;
+align-items: center;
+margin: .5vw;
+`
+
 export let ContactIcons = styled.div`
 display: flex;
-position: absolute;
-top: 52%;
-left: 10%;
-width: 80%;
-height: 10%;
 flex-direction: row;
+width: 40%;
+margin-top: .6vw;
 justify-content: space-around;
 `
 export let Input = styled.input`
 display: block;
-margin-left: 15%;
-padding: 3px 3px;
 background-color: #969696;
-width: 70%;
 font-family: inherit;
 font-size: 15px;
 font-weight: inherit;
@@ -211,23 +191,19 @@ transition: all 0.3s 0s ease;
 export let Message = styled.textarea`
 font-family: inherit;
 display: flex;
-width: 71%;
 border-radius: 0.4rem;
-margin-left: 15%;
-height: 40%;
 background-color: #969696;
 border: 2px solid #828282;
 flex-direction: column;
 transition: all 0.3s 0s ease;
 box-shadow: 0px 5px 10px rgb(150 150 150 / 10%);
+height: 10vh;
 &:hover{
     border: 2px solid #fff;
     box-shadow: 2px 10px 17px rgba(0,0,0,0.3);
 }
 &::placeholder{
     font-size: 16px;
-    margin-left: 5px;
-    padding-left: 2px;
     color: #515257;
 }
 `
@@ -236,16 +212,13 @@ font-family: 'Ubuntu', sans-serif;
 display: flex;
 color: #e6e6e6;
 width: fit-content;
-margin-left: 50px;
-margin-top: 25px;
- `
+margin-left: 1vw;
+`
 export let Error = styled.span`
 font-family: 'Ubuntu', sans-serif;
 color: #8a3030;
 font-weight: 100;
 font-size: 18px;
 align-self: center;
-margin: 0;
-padding: 0;
 height: 25px;
 `
