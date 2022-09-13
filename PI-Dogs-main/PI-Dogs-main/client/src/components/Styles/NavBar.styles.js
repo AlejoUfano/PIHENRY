@@ -7,7 +7,6 @@ height: ${(props)=>(props.extendNavBar?'100vh':'80px')};
 background-color: #e6e6e6;
 display: flex;
 flex-direction: column;
-position: absolute;
 box-shadow: 0px 9px 14px -9px rgba(0,0,0,0.83);
 -webkit-box-shadow: 0px 9px 14px -9px rgba(0,0,0,0.83);
 -moz-box-shadow: 0px 9px 14px -9px rgba(0,0,0,0.83);
