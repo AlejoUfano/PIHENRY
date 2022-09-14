@@ -4,7 +4,7 @@ import { postDog, getTemperaments, getDogs } from '../../redux/actions/actions.j
 import NavBar from '../NavBar/NavBar.jsx'
 import SuccessPopUp from '../SuccessPopUp/SuccessPopUp.jsx'
 import { Card } from '../Card/Card.jsx';
-import { CreateContainer, TempsContainer, FormContainer, FormTitle, CreateButton, PreviewTitle, Temp, PreviewCardContainer, FormInput, HeightWeight, HeightWeightContainer, ErrorMessage, PreviewContainer } from '../Styles/Create.style.js'
+import { CreateContainer, TempsContainer, SelectDiv, FormContainer, FormTitle, CreateButton, PreviewTitle, Temp, PreviewCardContainer, FormInput, HeightWeight, HeightWeightContainer, ErrorMessage, PreviewContainer } from '../Styles/Create.style.js'
 import DropdownMulti from '../DropdownMulti/DropdownMulti.jsx';
 
 let Create = ({ postDog, getTemperaments, temperaments, dogs }) => {
@@ -133,8 +133,10 @@ let Create = ({ postDog, getTemperaments, temperaments, dogs }) => {
                   {temps?.map(e=><><Temp onClick={()=>setTemps(temps.filter(t=>t!==e))}>{temperaments[e-1]} ✖️</Temp></>)}
                 </TempsContainer>
 
-                <DropdownMulti setTemps={setTemps} temps={temps} temperaments={temperaments}/>
-                <ErrorMessage>{!temps?.length&&errors.image?'You must select at least one temperament':null}</ErrorMessage>                
+                <SelectDiv>
+                  <DropdownMulti setTemps={setTemps} temps={temps} temperaments={temperaments}/>
+                  <ErrorMessage>{!temps?.length&&errors.image?'You must select at least one temperament':null}</ErrorMessage>  
+                </SelectDiv>              
                 
                 <div>
                   {

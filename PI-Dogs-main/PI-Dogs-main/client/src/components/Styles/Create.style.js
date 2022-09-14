@@ -25,7 +25,6 @@ export let PreviewTitle = styled.div`
 display: flex;
 font-weight: bold;
 font-size: 30px;
-margin: 20px 0px;
 color: #efc32e;
 align-self: center;
 text-shadow: 0px 5px 5px rgb(239 194 46 / 20%);
@@ -44,12 +43,9 @@ font-weight: 500;
 
 export let FormInput = styled.input`
 display: block;
-margin-top: 10px;
-margin-bottom: 10px;
-margin-left: 15%;
-padding: 3px 3px;
+padding: .2vw;
 background-color: #969696;
-width: 70%;
+width: 30vw;
 font-family: inherit;
 font-size: 15px;
 font-weight: inherit;
@@ -71,15 +67,13 @@ transition: all 0.4s 0s ease;
 }
 `
 export let HeightWeight = styled.input`
+padding: .2vw;
 display: flex;
-margin-top: 10px;
+margin-top: .1vh;
 position: relative;
-margin-bottom: 10px;
-margin-left: 5%;
-padding: 3px 3px;
+width: 12vw;
+margin-bottom: .6vh;
 background-color: #969696;
-width: 32.25%;
-left: -2%;
 font-family: inherit;
 font-size: 15px;
 font-weight: inherit;
@@ -102,20 +96,19 @@ box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
 `
 export let HeightWeightContainer = styled.div` 
 display: flex;
-margin: 0px;
-justify-content: center;
+width: 67.5%;
+align-self: center;
+justify-content: space-between;
 `
 export let SelectContainer = styled.div`
-width: 70.9%;
 display: flex;
-margin-left: 15%;
 border-radius: 0.4rem;
 color: #000;
 box-shadow: 0px 5px 10px rgb(150 150 150 / 10%);
 `
 export let PreviewCardContainer = styled.div`
 display: flex;
-align-items: center;
+margin-top: 10vh;
 align-self: center;
 `
 export let CreateButton = styled.button`
@@ -127,12 +120,10 @@ border-radius: 15px;
 box-sizing: border-box;
 cursor: pointer;
 display: inline-block;
-margin-left: 15%;
-margin-top: 2px;
 min-height: 60px;
 outline: none;
 transition: all 0.4s 0s ease;
-width: 71%;
+width: 31vw;
 font-size: 25px;
 &:hover {
     color: #000;
@@ -143,14 +134,15 @@ font-size: 25px;
 export let FormContainer = styled.form`
 border-radius: 12px;
 display: flex;
-width: 50%;
-height: 85%;
+width: 45vw;
+height: 80vh;
 margin: 0px 40px;
-padding: 0;
 flex-direction: column;
 background-color: #26272b;
 box-shadow: 0px 6px 15px rgb(0 0 0 / 50%);
 transition: all 0.4s 0s ease;
+justify-content: center;
+align-items: center;
 &:hover{
     box-shadow: 0px 6px 20px rgb(0 0 0 / 70%);
 }
@@ -159,13 +151,19 @@ transition: all 0.4s 0s ease;
     color: #f7cb36;
 }
 `
+export let SelectDiv = styled.div`
+display: flex;
+width: 43vw;
+margin-right: .65vw;
+flex-direction: column;
+`
 export let PreviewContainer = styled.div`
 display: flex;
-width: 20%;
-height: 65%;
-margin: 80px 0px;
+width: 30vw;
+height: 80vh;
 border-radius: 12px;
 flex-direction: column;
+justify-content: center;
 background-color: #26272b;
 box-shadow: 0px 6px 15px rgb(0 0 0 / 50%);
 transition: all 0.4s 0s ease;
@@ -186,7 +184,7 @@ padding: 3px 3px;
 justify-content: center;
 box-shadow: 1px 3px 6px rgb(0 0 0 / 40%);
 border-radius: 8px;
-width: fit-content;
+width: max-content;
 height: fit-content;
 transition: all 0.4s 0s ease;
 &:hover{
@@ -211,20 +209,15 @@ border: 1px solid red;
 `
 export let TempsContainer = styled.div`
 display: flex;
-margin-bottom: 5px;
-padding: 3px;
-height: 35px;
-width: 70%;
+height: 6vh;
+width: 31vw;
+align-items: center;
 align-self: center;
 justify-content: center;
 `
 export let Placeholder = styled.div`
 display: flex;
 position: fixed;
-top: 700px;
-left: 416px;
-width: 150px;
-height: 40px;
 background-color: #969696;
 justify-content: center;
 flex-direction: column;
