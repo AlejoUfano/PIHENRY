@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading.jsx';
 import NavBar from '../NavBar/NavBar.jsx'
 import { BsFilterRight } from 'react-icons/bs';
 import Dropdown from '../Dropdown/Dropdown.jsx'
-import { Pagination, Placeholder, PaginationButton, Icon, SearchBar, FilterComponent, CreateDog, CreateText, OptionsContainer, GlobalHomeContainer, HomeCardsContainer } from '../Styles/Home.style.js'
+import { Pagination, Placeholder, HomeBody, PaginationButton, Header, GlobalContainer, Icon, SearchBar, FilterComponent, CreateDog, CreateText, OptionsContainer, GlobalHomeContainer, HomeCardsContainer } from '../Styles/Home.style.js'
 import ErrorPopUp from '../ErrorPopUp/ErrorPopUp.jsx';
 
 let Home = ({getDogs, getDogByName, getTemperaments, dogs, temperaments}) => {  
@@ -19,17 +19,19 @@ let Home = ({getDogs, getDogByName, getTemperaments, dogs, temperaments}) => {
     let [apiOrDB, setApiOrDB] = useState('')
     let [emptyDb, setEmptyDb] = useState(false)
     let [notFind, setNotFind] = useState(false)
+    let [doggos, setDoggos] = useState()
 
     useEffect(() => {     
       console.log('USE EFFECT HOME ');  
       getTemperaments()    
-      getDogs()              
+      getDogs()
+      console.log('dog state:', dog); 
     },[])
+    
+    dog?doggos=dogs.filter(e=>e.name.toLowerCase().includes(dog.toLowerCase())):doggos=dogs
 
-
-    let handleChange = (e) => {
-      setDog(e.target.value)                                
-    }
+           
+  
 
     let handleSubmit = async (e) => {
       e.preventDefault()
@@ -39,39 +41,72 @@ let Home = ({getDogs, getDogByName, getTemperaments, dogs, temperaments}) => {
       await getDogByName(dog)
       e.target.input.value=''
       await setPage(0)
-    }   
-let dogs2 = []
-let sortedDogs = []
-if(apiOrDB==='API')sortedDogs=dogs.filter(e=>typeof e.id === 'number')
-if(apiOrDB==='DB')sortedDogs=dogs.filter(e=>typeof e.id === 'string')
-if(apiOrDB==='')sortedDogs=dogs
-if(ordered==='NAMEASC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0).reverse()
-if(ordered==='NAMEDESC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0)
-if(ordered==='WEIGHTDESC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse()
-if(ordered==='WEIGHTASC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0)
-if(temps){
-  let exists=dogs.filter(e=>e.temperament?.includes(temps))
-  exists.length?sortedDogs=exists.slice(0,8):alert('NOT FOUND!')
+    }                     
+
+// if(apiOrDB==='API')sortedDogs=dogs.filter(e=>typeof e.id === 'number')
+// if(apiOrDB==='DB')sortedDogs=dogs.filter(e=>typeof e.id === 'string')
+// if(apiOrDB==='')sortedDogs=dogs
+// if(ordered==='NAMEASC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0).reverse()
+// if(ordered==='NAMEDESC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.slice(page*8,page*8+8).sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0)
+// if(ordered==='WEIGHTDESC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse()
+// if(ordered==='WEIGHTASC'&&apiOrDB!=='DB')sortedDogs=sortedDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0)
+// if(temps){
+//   let exists=dogs.filter(e=>e.temperament?.includes(temps))
+//   exists.length?sortedDogs=exists.slice(0,8):alert('NOT FOUND!')
+// }
+let handleChange = (e) => {
+  setDog(e.target.value)
+  setDoggos(dogs.filter(e=>e.name.toLowerCase().includes(dog.toLowerCase())))
+  setPage(0)                        
 }
-console.log('temps changes:', temps);
+if(temps){
+  console.log('temps:', temps);
+  let exists=dogs.filter(e=>e.temperament?.includes(temps))
+  console.log('Exists:',exists);
+  if(exists?.length)setDoggos(exists)
+}
 
 if(!dogs.length) return (<Loading/>)
   return (
-    <>
+    <GlobalContainer>
       <NavBar  setPage={setPage} setTemps={setTemps} setApiOrDB={setApiOrDB} setOrdered={setOrdered}/>
       
       <GlobalHomeContainer>
+        <Header>
+          
+          <Pagination>
+            <PaginationButton onClick={()=>page>0?setPage(page-=1):null}><Icon.Prev size={40}/></PaginationButton>
+            <PaginationButton onClick={()=>(page<Math.ceil(doggos.length/8)-1)?setPage(page+=1):null}><Icon.Next size={40}/></PaginationButton>
+          </Pagination>
 
-              <Pagination>
-                <PaginationButton onClick={()=>page>0?setPage(page-=1):null}><Icon.Prev size={40}/></PaginationButton>
-                <PaginationButton onClick={()=>(page<Math.ceil(dogs.length/8)-1)?setPage(page+=1):null}><Icon.Next size={40}/></PaginationButton>
-              </Pagination>
+          <FilterComponent>
+            <Filters setOrdered={setOrdered} setApiOrDB={setApiOrDB} dogs={dogs} setEmptyDb={setEmptyDb}/>
+          </FilterComponent>  
 
-              <FilterComponent>
-                <Filters setOrdered={setOrdered} setApiOrDB={setApiOrDB} dogs={dogs} setEmptyDb={setEmptyDb}/>
-              </FilterComponent>  
+        </Header>
 
-            <OptionsContainer>   
+        <HomeBody>
+            <OptionsContainer>
+              
+            
+                <SearchBar placeholder='Search by breed...' type='text' name='input'onChange={(e)=>{handleChange(e)}}/>                                        
+              
+
+              <Dropdown setTemps={setTemps} temps={temps} temperaments={temperaments}/>
+              {/* {!temps?.length?<Placeholder>Select...</Placeholder>:<Icon.Close onClick={()=>setTemps(null)}/>}   */}
+              
+              <CreateDog>
+                <Link to='/create'><CreateText>Create Dog</CreateText></Link> 
+              </CreateDog>
+
+            </OptionsContainer>
+          
+            <HomeCardsContainer>
+              {dogs?doggos.slice(page*8,page*8+8).map(dog=><Card dog={dog}/>):'NO DOGS'}
+            </HomeCardsContainer>
+        </HomeBody>
+
+            {/* <OptionsContainer>   
                      
               <form onSubmit={(e)=>{handleSubmit(e)}}>
                   <SearchBar placeholder='Search...' type='text' name='input'onChange={(e)=>{handleChange(e)}}/> 
@@ -85,16 +120,16 @@ if(!dogs.length) return (<Loading/>)
                 <Link to='/create'><CreateText>Create Dog</CreateText></Link> 
               </CreateDog>
 
-            </OptionsContainer>  
-
+            </OptionsContainer>   */}
+{/* 
             <HomeCardsContainer>
               {dogs?sortedDogs.map(dog=><Card dog={dog}/>):'NO DOGS'}
-            </HomeCardsContainer> 
+            </HomeCardsContainer>  */}
 
       </GlobalHomeContainer>
       {notFind?<ErrorPopUp message='Error: cant find a dog with this name' setNotFind={setNotFind}/>:null}
       {emptyDb?<ErrorPopUp message='Error: The database is empty' setEmptyDb={setEmptyDb}/>:null}
-    </>
+    </GlobalContainer>
   )
 }
 
