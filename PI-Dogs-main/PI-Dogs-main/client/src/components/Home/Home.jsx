@@ -7,7 +7,8 @@ import Loading from '../Loading/Loading.jsx';
 import NavBar from '../NavBar/NavBar.jsx'
 import { BsFilterRight } from 'react-icons/bs';
 import Dropdown from '../Dropdown/Dropdown.jsx'
-import { Pagination, Placeholder, Test, HomeBody, PaginationButton, Header, GlobalContainer, Icon, SearchBar, FilterComponent, CreateDog, Form, CreateText, OptionsContainer, GlobalHomeContainer, HomeCardsContainer } from '../Styles/Home.style.js'
+import { Pagination, HomeBody, PaginationButton, Header, GlobalContainer, Icon, SearchBar, FilterComponent, CreateDog, CreateText, OptionsContainer, GlobalHomeContainer, HomeCardsContainer } from '../Styles/Home.style.js'
+
 import ErrorPopUp from '../ErrorPopUp/ErrorPopUp.jsx';
 
 let Home = ({getDogs, getDogByName, getTemperaments, dogs, filterDogsByBreed, filteredDogs, filterDogsByTemps, temperaments}) => {
