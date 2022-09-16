@@ -135,23 +135,6 @@ transition: all 0.4s 0s ease;
   color: #000;
 }
 `
-
-
-export let Placeholder = styled.div`
-font-family: 'Lato', sans-serif;
-font-weight: 100;
-position: fixed;
-top: 340px;
-left: 273px;
-z-index: 6;
-width: 40px;
-height: 20px;
-padding-left: 10px;
-padding-right: 100px;
-padding-bottom: 8px;
-background-color: #efeef1;
-color: #757575;
-`
 export let SelectContainer = styled.div`
 width: 250px;
 height: 42px;
@@ -167,9 +150,6 @@ margin-left: 150px;
   font-weight: 900;
 }
 `
-
-
-
 export let SearchBar = styled.input`
 display: flex;
 background: transparent;
