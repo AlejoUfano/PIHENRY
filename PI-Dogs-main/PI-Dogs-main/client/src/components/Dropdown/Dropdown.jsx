@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { GlobalContainer, Details,  } from '../Styles/Dropdown.style'
+import { Details,  } from '../Styles/Dropdown.style'
 
 export default function Dropdown({temperaments, setTemps, temps, handleTemp}) {
   if(temperaments[0]!=='All')temperaments.unshift('All')
@@ -8,8 +8,7 @@ export default function Dropdown({temperaments, setTemps, temps, handleTemp}) {
   },[setTemps])
   return (
       <Details>        
-	      <summary class='radios'>
-          
+	      <summary class='radios'>          
           {!temps?.length?'Temperaments':temperaments.map((e,index)=><input type='radio' name='item' id={`item${index+1}`} title={e}/>)}	
 	      </summary>
 	      <ul class='list'>
