@@ -55,6 +55,18 @@ margin-top: .2vw;
 export let HomeBody = styled.div`
 display: flex;
 `
+export let Test = styled.div`
+display: flex;
+border: 1px solid red;
+padding: 2% 4%;
+width: 50%;
+height: 30px;
+`
+export let Form = styled.form`
+display: flex;
+width: 15.2vw;
+height: 6vh;
+`
 export let OptionsContainer = styled.div`
 align-items: flex-end;
 flex-direction: column;
@@ -161,10 +173,10 @@ margin-left: 150px;
 export let SearchBar = styled.input`
 display: flex;
 background: transparent;
-padding: 10px 20px;
+padding: 0% 4%;
 border-radius: 4px;
-width: 50%;
-height: 30px;
+width: 100%;
+height: 6vh;
 font-size: 17px;
 box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
 border: 2px solid #4f4f4f;
@@ -192,12 +204,11 @@ border-radius: 15px;
 cursor: pointer;
 display: flex;
 justify-content: center;
-height: 30px;
 outline: none;
 transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 font-size: 25px;
-width: 50%;
-padding: 10px 20px;
+width: 15vw;
+height: 6vh;
 margin-top: 5vh;
 text-align: center;
 align-items: center;
