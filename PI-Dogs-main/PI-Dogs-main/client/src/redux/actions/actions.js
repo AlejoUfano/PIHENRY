@@ -5,6 +5,9 @@ export const GET_DOG_BY_NAME = 'GET_DOG_BY_NAME'
 export const GET_DOG_DETAILS = 'GET_DOG_DETAILS'
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS'
 export const POST_DOG = 'POST_DOG'
+export const FILTER_DOGS_BY_TEMPS = 'FILTER_DOGS_BY_TEMPS'
+export const FILTER_DOGS_BY_BREED = 'FILTER_DOGS_BY_BREED'
+export const RESET_FILTERS = 'RESET_FILTERS'
 
 export const getDogs = () => {
         return async (dispatch) => {
@@ -16,6 +19,33 @@ export const getDogs = () => {
                 console.error(e);
             }
         }
+}
+export const filterDogsByBreed = (filter) => {
+    return async (dispatch) => {
+        try {              
+            return dispatch({ type: FILTER_DOGS_BY_BREED, payload: filter});
+        } catch(e) {
+            console.error(e);
+        }
+    }
+}
+export const resetFilters = () => {
+    return async (dispatch) => {
+        try {              
+            return dispatch({ type: RESET_FILTERS });
+        } catch(e) {
+            console.error(e);
+        }
+    }
+}
+export const filterDogsByTemps = (filter) => {
+    return async (dispatch) => {
+        try {              
+            return dispatch({ type: FILTER_DOGS_BY_TEMPS, payload: filter});
+        } catch(e) {
+            console.error(e);
+        }
+    }
 }
 
 export const getDogByName = (name) => {
