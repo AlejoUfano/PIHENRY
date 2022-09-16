@@ -11,7 +11,6 @@ box-shadow: 0px 9px 14px -9px rgba(0,0,0,0.83);
 -webkit-box-shadow: 0px 9px 14px -9px rgba(0,0,0,0.83);
 -moz-box-shadow: 0px 9px 14px -9px rgba(0,0,0,0.83);
 z-index: 10;
-border-radius: 0 0 30px 25px;
 `
 export let LeftContainer = styled.div`
 flex: 70%;
