@@ -8,6 +8,11 @@ export const POST_DOG = 'POST_DOG'
 export const FILTER_DOGS_BY_TEMPS = 'FILTER_DOGS_BY_TEMPS'
 export const FILTER_DOGS_BY_BREED = 'FILTER_DOGS_BY_BREED'
 export const RESET_FILTERS = 'RESET_FILTERS'
+export const WEIGHT_ASC = 'WEIGHT_ASC'
+export const WEIGHT_DESC = 'WEIGHT_DESC'
+export const NAME_ASC = 'NAME_ASC'
+export const NAME_DESC = 'NAME_DESC'
+export const SET_SOURCE = 'SET_SOURCE'
 
 export const getDogs = () => {
         return async (dispatch) => {
@@ -47,6 +52,56 @@ export const filterDogsByTemps = (filter) => {
         }
     }
 }
+export const nameAsc = () => {
+    console.log('nameAsc Action');
+    return async (dispatch) => {
+        try {   
+            console.log('DISPATCH NAME_ASC');              
+            return dispatch({ type: NAME_ASC });
+        } catch(e) {
+            console.log('nameAsc ACTION ERROR!!!!!!', e);
+        }
+    }
+}
+export const nameDesc = () => {
+    return async (dispatch) => {
+        try {           
+            return dispatch({ type: NAME_DESC});
+        } catch(e) {
+            console.error(e);
+        }
+    }
+}
+export const weightAsc = () => {
+    return async (dispatch) => {
+        try {              
+            return dispatch({ type: WEIGHT_ASC });
+        } catch(e) {
+            console.error(e);
+        }
+    }
+}
+export const weightDesc = () => {
+    return async (dispatch) => {
+        try {              
+            return dispatch({ type: WEIGHT_DESC});
+        } catch(e) {
+            console.error(e);
+        }
+    }
+}
+export const setSource = (source) => {
+    console.log('setSource action source:', source);
+    return async (dispatch) => {
+        try {              
+            return dispatch({ type: SET_SOURCE, payload: source});
+        } catch(e) {
+            console.error(e);
+        }
+    }
+}
+
+
 
 export const getDogByName = (name) => {
     return async (dispatch) => {
