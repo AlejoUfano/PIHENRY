@@ -23,7 +23,7 @@ display: flex;
 align-self: center;
 width: 56vw;
 justify-content: flex-end;
-margin-right: 25vw;
+margin-right: 20vw;
 `
 export let PaginationButton = styled.button`
 display: flex;
@@ -50,7 +50,7 @@ transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 `
 export let FilterComponent = styled.div`
 display: flex;
-margin-top: .2vw;
+margin-top: .5vh;
 `
 export let HomeBody = styled.div`
 display: flex;

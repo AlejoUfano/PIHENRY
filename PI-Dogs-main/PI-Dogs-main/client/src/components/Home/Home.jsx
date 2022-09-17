@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getDogs, getDogByName, filterDogsByTemps, getTemperaments, filterDogsByBreed } from '../../redux/actions/actions.js'
+import { getDogs, getDogByName, nameAsc, setSource, nameDesc, weightAsc, weightDesc, filterDogsByTemps, getTemperaments, filterDogsByBreed } from '../../redux/actions/actions.js'
 import { Card } from '../Card/Card.jsx'
 import Loading from '../Loading/Loading.jsx';
 import NavBar from '../NavBar/NavBar.jsx'
 import { BsFilterRight } from 'react-icons/bs';
 import Dropdown from '../Dropdown/Dropdown.jsx'
-import { Pagination, HomeBody, PaginationButton, Header, GlobalContainer, Icon, SearchBar, FilterComponent, CreateDog, CreateText, OptionsContainer, GlobalHomeContainer, HomeCardsContainer } from '../Styles/Home.style.js'
+import { Pagination, HomeBody, PaginationButton, Form, Header, GlobalContainer, Icon, SearchBar, FilterComponent, CreateDog, CreateText, OptionsContainer, GlobalHomeContainer, HomeCardsContainer } from '../Styles/Home.style.js'
 
 import ErrorPopUp from '../ErrorPopUp/ErrorPopUp.jsx';
 
-let Home = ({getDogs, getDogByName, getTemperaments, dogs, filterDogsByBreed, filteredDogs, filterDogsByTemps, temperaments}) => {
+let Home = ({getDogs, getDogByName, setSource, nameAsc, nameDesc, weightAsc, weightDesc, getTemperaments, dogs, filterDogsByBreed, filteredDogs, filterDogsByTemps, temperaments}) => {
     let [dog, setDog] = useState('')
-    let [ordered, setOrdered] = useState('NAMEASC')
     let [temps,setTemps] = useState(null)
     let [page, setPage] = useState(0)
-    let [apiOrDB, setApiOrDB] = useState('')
     let [emptyDb, setEmptyDb] = useState(false)
     let [notFind, setNotFind] = useState(false)
-    let [doggos, setDoggos] = useState()
+    let [refresh, setRefresh] = useState(false)
 
     useEffect(() => {     
       console.log('USE EFFECT HOME ');  
@@ -66,7 +64,7 @@ let handleTemp = async (e) => {
 if(!dogs.length) return (<Loading/>)
   return (
     <GlobalContainer>
-      <NavBar  setPage={setPage} setTemps={setTemps} setApiOrDB={setApiOrDB} setOrdered={setOrdered}/>
+      <NavBar  setPage={setPage} setTemps={setTemps}/>
       
       <GlobalHomeContainer>
         <Header>
@@ -77,7 +75,7 @@ if(!dogs.length) return (<Loading/>)
           </Pagination>
 
           <FilterComponent>
-            <Filters setOrdered={setOrdered} setApiOrDB={setApiOrDB} dogs={dogs} setEmptyDb={setEmptyDb}/>
+            <Filters dogs={dogs} setEmptyDb={setEmptyDb} nameAsc={nameAsc} nameDesc={nameDesc} weightAsc={weightAsc} weightDesc={weightDesc} setRefresh={setRefresh} refresh={refresh} setSource={setSource}/>
           </FilterComponent>  
 
         </Header>
@@ -130,7 +128,7 @@ if(!dogs.length) return (<Loading/>)
 }
 
 //========================FILTER MENU =============================
-let Filters = ({ setOrdered,setApiOrDB,dogs,setEmptyDb }) => {
+let Filters = ({ dogs,setEmptyDb, nameAsc, setRefresh, refresh, nameDesc, weightAsc, weightDesc, setSource }) => {
   return (
     <div className='dropdown'>
         <nav>
@@ -139,20 +137,42 @@ let Filters = ({ setOrdered,setApiOrDB,dogs,setEmptyDb }) => {
                <ul className='filter-buttons'>
                   <li><div>🐶 By Name</div>
                      <ul>
-                        <li><div onClick={()=>setOrdered('NAMEDESC')}>A/Z</div></li>
-                        <li><div onClick={()=>setOrdered('NAMEASC')}>Z/A</div></li>
+                        <li><div onClick={()=>{
+                          nameAsc()
+                          setRefresh(prevRefresh => !prevRefresh)
+                          }}>A/Z</div></li>
+                        <li><div onClick={()=>{
+                          nameDesc()
+                          setRefresh(prevRefresh => !prevRefresh)
+                          }}>Z/A</div></li>
                      </ul>
                   </li>
                   <li><div>🐷 By Weight</div>
                      <ul>
-                        <li><div onClick={()=>setOrdered('WEIGHTASC')}>ASC</div></li>
-                        <li><div onClick={()=>setOrdered('WEIGHTDESC')}>DESC</div></li>
+                        <li><div onClick={()=>{
+                          weightAsc()
+                          setRefresh(prevRefresh => !prevRefresh)
+                          }}>ASC</div></li>
+                        <li><div onClick={()=>{
+                          weightDesc()
+                          setRefresh(prevRefresh => !prevRefresh)
+                          }}>DESC</div></li>
                      </ul>
                   </li>
                   <li><div>📁 Source</div>
                      <ul>
-                        <li><div onClick={()=>setApiOrDB('API')}>API</div></li>
-                        <li><div onClick={()=>dogs.filter(e=>typeof e.id === 'string').length?setApiOrDB('DB'):setEmptyDb(true)}>DB</div></li>
+                        <li><div onClick={()=>{
+                          setSource('All')
+                          setRefresh(prevRefresh => !prevRefresh)
+                          }}>All</div></li>
+                        <li><div onClick={()=>{
+                          setSource('API')
+                          setRefresh(prevRefresh => !prevRefresh)
+                          }}>API</div></li>
+                        <li><div onClick={()=>{
+                          setSource('DB')
+                          setRefresh(prevRefresh => !prevRefresh)
+                          }}>DB</div></li>
                      </ul>
                   </li>
                </ul>
@@ -175,4 +195,4 @@ let mapStateToProps = (state) => {
     };
   }
     
-export default connect(mapStateToProps,{ getDogs,getDogByName, filterDogsByTemps, filterDogsByBreed, getTemperaments })(Home);
+export default connect(mapStateToProps,{ getDogs,getDogByName, nameAsc, nameDesc, weightAsc, weightDesc, filterDogsByTemps, filterDogsByBreed, setSource, getTemperaments })(Home);
