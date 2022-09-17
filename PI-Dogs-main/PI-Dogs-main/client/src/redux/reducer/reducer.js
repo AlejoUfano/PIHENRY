@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_DOG_BY_NAME, GET_DOG_DETAILS, GET_TEMPERAMENTS, POST_DOG, RESET_FILTERS, FILTER_DOGS_BY_TEMPS, FILTER_DOGS_BY_BREED } from '../actions/actions.js'
+import { GET_DOGS, GET_DOG_BY_NAME, GET_DOG_DETAILS, GET_TEMPERAMENTS, POST_DOG, RESET_FILTERS, FILTER_DOGS_BY_TEMPS, FILTER_DOGS_BY_BREED, NAME_ASC, NAME_DESC, WEIGHT_ASC, WEIGHT_DESC, SET_SOURCE } from '../actions/actions.js'
 
 let initialState = {
     dogs: [],
@@ -49,6 +49,49 @@ export default function reducer(state = initialState, action) {
         return{
         ...state,
         filteredDogs: state.dogs
+        }
+      }
+      case NAME_ASC: {
+        console.log('NAME_ASC REDUCER', state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0)[0]:state.dogs.sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0)[0]);
+        return{
+        ...state,
+        filteredDogs: state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0):state.dogs.sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0)
+        }
+      }
+      case NAME_DESC: {
+        console.log('NAME_DESC REDUCER', state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0).reverse()[0]:state.dogs.sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0).reverse()[0]);
+        return{
+        ...state,
+        filteredDogs: state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0).reverse():state.dogs.sort((a,b)=>a.name>b.name?1:b.name>a.name?-1:0).reverse()
+        }
+      }
+      case WEIGHT_ASC: {
+        console.log('WEIGHT_DESC REDUCER', state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0)[0]:state.dogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0)[0]);
+        return{
+        ...state,
+        filteredDogs: state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0):state.dogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0)
+        }
+      }
+      case WEIGHT_DESC: {
+        console.log('WEIGHT_DESC REDUCER', state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse()[0]:state.dogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse()[0]);
+        return{
+        ...state,
+        filteredDogs: state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse():state.dogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse()
+        }
+      }
+      case SET_SOURCE: {
+        console.log('SET_SOURCE REDUCER', action.payload === 'API' 
+        ? state.dogs.filter(e=>typeof e.id === 'number')
+        : action.payload==='DB'
+        ? state.dogs.filter(e=>typeof e.id === 'string')
+        : state.dogs);
+        return{
+        ...state,
+          filteredDogs: action.payload === 'API' 
+        ? state.dogs.filter(e=>typeof e.id === 'number')
+        : action.payload==='DB'
+        ? state.dogs.filter(e=>typeof e.id === 'string')
+        : state.dogs
         }
       }
       case FILTER_DOGS_BY_TEMPS: {
