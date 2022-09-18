@@ -14,10 +14,8 @@ export default function Contact() {
     e.preventDefault();
     emailjs.sendForm('service_v1cgva9', 'template_0unahwb', e.target, 'mj8OtvvSNN98qSM54')
       .then((result)=>{
-        console.log(result.text);
         setEmailSent(true)
       },(error)=>{
-        console.log(error.text);
       })
       e.target.reset()
   }
@@ -32,8 +30,6 @@ export default function Contact() {
       ...email,
       [e.target.name]: e.target.value
   }))
-  console.log('email:', email);
-  console.log('errors:', errors);
   }
 
   let formValidation = (email) => {
@@ -55,8 +51,6 @@ export default function Contact() {
     }
     return errors
   }
-  
-  console.log(Object.keys(errors).length);
 
   return (
     <GlobalContainer>

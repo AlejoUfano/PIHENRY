@@ -50,7 +50,6 @@ let Create = ({ postDog, getTemperaments, temperaments, dogs }) => {
                       weight:`${dog.minWeight} - ${dog.maxWeight}`,
                       age:dog.age
                     }
-    console.log('DOG OBJECT SUBMIT:', finalDog);
     postDog(finalDog)
     setCreated(true)
   }

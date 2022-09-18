@@ -20,7 +20,6 @@ let Home = ({getDogs, getDogByName, setSource, nameAsc, nameDesc, weightAsc, wei
     let [refresh, setRefresh] = useState(false)
 
     useEffect(() => {     
-      console.log('USE EFFECT HOME ');  
       getTemperaments()    
       getDogs()
     },[])
@@ -28,21 +27,17 @@ let Home = ({getDogs, getDogByName, setSource, nameAsc, nameDesc, weightAsc, wei
 let handleChange = (e) => {
   if(e){
     setDog(e.target.value)
-    console.log('dog from HC:', dog);
   }                    
 } 
 let handleSubmit = async (e) => {
   e.preventDefault()
-  console.log('dog from HS:', dog);
   await filterDogsByBreed(dog)
-  console.log('filteredDogs after handleSubmit:', filteredDogs);
   e.target.reset();
   setPage(0)
 }
 
 let handleTemp = async (e) => {
   await filterDogsByTemps(e)
-  console.log('filteredDogs after action:', filteredDogs)
   setPage(0)
 }
 

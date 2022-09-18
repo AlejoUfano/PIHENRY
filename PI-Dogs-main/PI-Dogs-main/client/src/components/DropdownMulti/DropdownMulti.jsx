@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getTemperaments } from '../../redux/actions/actions.js'
 
 let DropdownMulti = ({temperaments, setTemps, temps }) => {
-console.log('temp state:', temperaments);
   return (
     <>
       <details class='custom-select' id='create'>        

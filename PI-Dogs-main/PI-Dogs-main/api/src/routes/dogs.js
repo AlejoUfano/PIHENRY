@@ -5,7 +5,6 @@ const { Dog, Temper } = require('../db.js');
 
 app.get('/dogs', async (req, res, next) => {
     let getDogs = [] 
-    console.log('REQ.QUERY.NAME',req.query.name);
     req.query.name?next():
     await axios.get('https://api.thedogapi.com/v1/breeds')     
         .then(async data => {            
@@ -25,8 +24,7 @@ app.get('/dogs', async (req, res, next) => {
                 temperament:e.tempers.map(e=>e.name).toString(),
                 weight:e.weight,
                 image:e.image,
-            }))
-            console.log('get /dogs NUMBER OF DOGS:',getDogs.length);    
+            }))  
             return res.status(200).json(getDogs)                           
         })                
         .catch(e => {
@@ -53,7 +51,6 @@ app.get('/dogs', async (req, res) => {
     await axios.get('https://api.thedogapi.com/v1/breeds') 
     .then(data => {
         let getDogsByBreed = data.data.filter(e=>e.name.toLowerCase().includes(name.toLowerCase()))
-        console.log('GET DOGS BY BREED:',getDogsByBreed);
         let finalDogs=[]
         let dogsByQuery=getDogsByBreed.map(e=>finalDogs.push({
             id:e.id,
@@ -65,7 +62,6 @@ app.get('/dogs', async (req, res) => {
         finalDogs.length?res.send(finalDogs):res.status(404).send('We couldnt find a dog with that breed')
     })
         .catch(e => {
-            console.log('error get /dogs?name=xxx',e.message)
             res.status(404).send('We couldnt find a dog with that breed')
         })
     })
@@ -85,9 +81,7 @@ app.get('/dogs/:id', async (req, res) => {
     await axios.get('https://api.thedogapi.com/v1/breeds')     
         .then(data => {
             let response = []
-            console.log('DATA DOG 1 ID',data.data[0].id);
             getDogById=(data.data.filter(e=>parseInt(e.id)===(parseInt(id))))
-            console.log('DOG BY ID:',getDogById[0]);
             response.push({
                 name:getDogById[0].name,
                 temperament:getDogById[0].temperament,
@@ -99,11 +93,9 @@ app.get('/dogs/:id', async (req, res) => {
                 breed_group:getDogById[0].breed_group,
                 bred_for:getDogById[0].bred_for,
             })
-            console.log('RESPONSE:', response);
             response.length>0?res.send(response):res.status(404).send('We couldnt find a dog with that id')
         })                
         .catch(e => {
-            console.log('We couldnt find a dog with that id');
             res.status(404).send('We couldnt find a dog with that id')
         })   
     })
@@ -112,7 +104,6 @@ app.get('/temperaments', async (req,res) => {
     await axios.get('https://api.thedogapi.com/v1/breeds')     
         .then(data => {
             let filteredTemps= [...new Set(data.data.reduce((t,e)=>t+e.temperament+',',[]).split(',').map(e=>e.replace(/\s+/g, '')))]
-            console.log('FILTERED NUMBER OF TEMPS:',filteredTemps.length);
              filteredTemps.map(async e=>{
                 let x = await Temper.findOne({where:{name:e}})
                 if(!x)Temper.create({name:e})
@@ -120,14 +111,12 @@ app.get('/temperaments', async (req,res) => {
             filteredTemps.length>0?res.send(filteredTemps):res.status(404).send('get /temperaments ERROR!')
         })
         .catch(e => {
-            console.log('get /temperaments ERROR!');
             res.status(404).send('get /temperaments ERROR!')
         })   
 })
 
 
 app.post('/dogs/create', async (req,res,next) => {
-    console.log('REQ.BODY /CREATE:', req.body);
     let {name, height, weight, age, temperaments, image} = req.body
     let dogExists = await Dog.findOne({where:{name}})
      if(dogExists)return res.status(404).send('Already exists a dog with this name')  
@@ -140,8 +129,6 @@ app.post('/dogs/create', async (req,res,next) => {
             temperaments
         })
         .then(async(dog)=>{
-            console.log('NEW DOG CREATED INFO:', dog);
-            console.log('TEMPERAMENTS:', temperaments);
             await dog.setTempers(temperaments)            
             res.status(200).send(dog)
         })
@@ -152,7 +139,6 @@ app.post('/dogs/create', async (req,res,next) => {
 
 app.delete('/dogs/delete/:id', async (req,res,next) =>{
 let {id} = req.params
-console.log(id);
         try{
            await Dog.destroy({where:{id:id}})
             res.send('Dog deleted successfully')
