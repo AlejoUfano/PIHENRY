@@ -7,10 +7,10 @@ import {LoadingContainer, LoadingIcon, LoadingBar} from '../Styles/Loading.style
 export default function Loading() {
   return (
     <div>
-        <NavBar/>
-        <LoadingContainer/>
-        <LoadingIcon src={loader} alt='Loading'/>
-        <LoadingBar src={loader2} alt='Loading'/>
+        <LoadingContainer>
+          <LoadingIcon src={loader} alt='Loading'/>
+          <LoadingBar src={loader2} alt='Loading'/>
+        </LoadingContainer>
     </div>
   )
 }
