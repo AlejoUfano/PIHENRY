@@ -36,6 +36,7 @@ let handleSubmit = async (e) => {
   console.log('dog from HS:', dog);
   await filterDogsByBreed(dog)
   console.log('filteredDogs after handleSubmit:', filteredDogs);
+  e.target.reset();
   setPage(0)
 }
 
@@ -50,7 +51,7 @@ let handleTemp = async (e) => {
 if(!dogs.length) return (<Loading/>)
   return (
     <GlobalContainer>
-      <NavBar  setPage={setPage} setTemps={setTemps}/>
+      <NavBar  setPage={setPage} setTemps={setTemps} />
       
       <GlobalHomeContainer>
         <Header>
