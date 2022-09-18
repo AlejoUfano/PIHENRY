@@ -2,43 +2,64 @@ import styled from "styled-components";
 
 export let FullDetailsContainer = styled.div`
 display: flex;
-position: absolute;
-width: 90%;
-height: 85%;
-top:10%;
-left: 5%;
+align-self: center;
+margin-top: 8vh;
+width: 80vw;
+height: 70vh;
+flex-direction: column;
+background-color: #26272b;
+border-radius: 12px;
+box-shadow: 2px 6px 30px rgb(0 0 0 / 70%);
 `
 export let CardContainer = styled.div`
+align-self: center;
 font-family: 'Ubuntu', sans-serif;
-width: 70%;
-margin-left: 15%;
 border-radius: 12px;
-height: 70%;
-margin-top: 2.3%;
 background-color: #26272b;
 font-size: 40px;
 color: #f7cb36;
 font-weight: 500;
 text-align: center;
-padding-top: 15px;
 box-shadow: 2px 6px 30px rgb(0 0 0 / 70%);
 text-shadow: 0 4px 8px rgb(239 194 46 / 10%);
 transition: all 0.4s 0s ease;
+display: flex;
+width: 80%;
+height: max-content;
+margin-top: 3vh;
 &:hover{
     box-shadow: 3px 8px 45px rgb(0 0 0 / 90%);
     text-shadow: 0 8px 13px rgb(239 194 46 / 30%);
     color: #f7d436;
 }
 `
+export let DetailsTitle = styled.div`
+display: flex;
+font-family: 'Ubuntu', sans-serif;
+border-radius: 12px;
+font-size: 40px;
+color: #f7cb36;
+font-weight: 500;
+text-align: center;
+text-shadow: 0 4px 8px rgb(239 194 46 / 10%);
+transition: all 0.4s 0s ease;
+display: flex;
+justify-content: center;
+text-align: center;
+margin-top: 3vh;
+background-color: #26272b;
+&:hover{
+    text-shadow: 0 8px 13px rgb(239 194 46 / 30%);
+    color: #f7d436;
+}
+`
+
 export let ImageContainer = styled.div`
 display: flex;
 flex-direction: column;
-position: absolute;
-width: 30%;
-height: 50%;
-margin-left: 20%;
-top: 15%;
 border: none;
+width: 30vw;
+height: 50vh;
 border-radius: 12px 0px 0px 12px ;
 align-items: center;
 text-decoration: none;
@@ -54,26 +75,21 @@ transition: all 0.4s 0s ease;
 export let Image = styled.img`
 object-fit: cover;
 height: 100%;
-width: 100%;
+width: 30vw;
 border-radius: 12px 0px 0px 12px ;
 `
 export let DetailsContainer = styled.div`
+justify-content: center;
 flex-direction: column;
 font-family: 'Ubuntu', sans-serif;
 display: flex;
-position: absolute;
 border-radius: 0px 12px 12px 0px ;
-top: 15%;
-width: 30%;
-height: 50%;
-margin-left: 19%;
 background-color: #2e2f32;
 color: #fafbff;
-float: right;
-left: 30.95%;
 transition: all 0.4s 0s ease;
 box-shadow: 0 3px 7px rgb(0 0 0 / 20%);
 text-shadow: none;
+width: 100%;
 &:hover{
     box-shadow: 0 5px 10px rgb(0 0 0 / 50%);
 }
@@ -82,9 +98,8 @@ export let DogTitle = styled.div`
 color: #efc32e;
 font-size: 33px;
 display: flex;
-width: auto;
-margin-top: 17px;
 align-self: center;
+margin-bottom: 2vh;
 transition: all 0.4s 0s ease;
 transform: scale(0.95);
 &:hover{
@@ -96,13 +111,13 @@ transform: scale(0.95);
 export let NormalDetail = styled.div`
 font-family: 'Ubuntu', sans-serif;
 display: flex;
-margin-left: 35px;
-margin-top: 6px;
 font-size: 20px;
+margin-left: 3vw;
 color: #eff0f4;
 text-shadow: 0 5px 7px rgb(239 240 244 / 10%)
 `
 export let TemperamentsDiv = styled.div`
+margin-top: 2vh;
 font-size: 20px;
 display: flex;
 align-self: center;
@@ -112,16 +127,20 @@ export let TempContainer = styled.div`
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
-justify-content: space-around;
-height: 35%;
-margin-top: 3%;
+justify-content: space-between;
+justify-content: center;
+width: 90%;
+height: 25%;
+margin-top: 2vh;
+align-self: center;
 `
 export let Temp = styled.div`
-font-size: 20px;
+display: flex;
+font-size: 2vh;
 font-weight: 500;
 border: none;
-padding: 6px 18px;
-margin: 5px 15px;
+padding: .5vh 1vh;
+margin: 1vh 1vh;
 border-radius: 15px;
 height: 22px;
 width: max-content;
