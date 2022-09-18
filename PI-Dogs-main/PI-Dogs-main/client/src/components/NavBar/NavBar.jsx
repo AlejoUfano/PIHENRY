@@ -34,7 +34,7 @@ useEffect(() => {
                 // if(setApiOrDB) await setApiOrDB('')
                 // if(setOrdered) await setOrdered('NAMEASC')
                 resetFilters()
-                setTemps('')
+                setPage(0)
                 }} alt='not found'/>
             </Link>
           </NavToHomeContainer>
