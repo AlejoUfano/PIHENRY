@@ -17,8 +17,7 @@ export const SET_SOURCE = 'SET_SOURCE'
 export const getDogs = () => {
         return async (dispatch) => {
             try {      
-                let data = await axios.get('http://localhost:3001/dogs');
-                console.log('DATA.DATA INFO:', data.data.length);            
+                let data = await axios.get('http://localhost:3001/dogs');         
                 return dispatch({ type: GET_DOGS, payload: data.data });
             } catch(e) {
                 console.error(e);
@@ -53,13 +52,11 @@ export const filterDogsByTemps = (filter) => {
     }
 }
 export const nameAsc = () => {
-    console.log('nameAsc Action');
     return async (dispatch) => {
-        try {   
-            console.log('DISPATCH NAME_ASC');              
+        try {               
             return dispatch({ type: NAME_ASC });
         } catch(e) {
-            console.log('nameAsc ACTION ERROR!!!!!!', e);
+            console.log(e);
         }
     }
 }
@@ -91,7 +88,6 @@ export const weightDesc = () => {
     }
 }
 export const setSource = (source) => {
-    console.log('setSource action source:', source);
     return async (dispatch) => {
         try {              
             return dispatch({ type: SET_SOURCE, payload: source});
@@ -116,11 +112,9 @@ export const getDogByName = (name) => {
 
 
 export const getDogDetails = (id) => {
-    console.log('LLEGAMOS A ACTION DETAILS');
     return async (dispatch) => {
         try {
             let data = await axios.get(`http://localhost:3001/dogs/${id}`)
-            console.log('ACTION GET_DOG_DETAILS:',data.data);
             return dispatch({ type: GET_DOG_DETAILS, payload: data.data })
         } catch(e) {
             console.log(e)

@@ -15,9 +15,7 @@ let Details = ({ getDogDetails, details }) => {
      getDogDetails(id)
     }, [])
     useEffect(() => () => {
-        console.log('Unmounted')
       },[])
- console.log('DOG DETAILS:', details);
     if(!details.length) return (<Loading/>)
     if(!details[0].lifeSpan) return (    
       <GlobalContainer>
