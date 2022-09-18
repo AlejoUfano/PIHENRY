@@ -5,6 +5,9 @@ background-color: #efeef1;
 display: flex;
 justify-content: center;
 flex-direction: column;
+z-index: 10;
+height: 100vh;
+width: 100vw;
 `
 
 export let LoadingIcon = styled.img`
