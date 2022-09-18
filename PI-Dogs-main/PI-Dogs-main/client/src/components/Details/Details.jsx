@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { getDogDetails } from '../../redux/actions/actions.js'
 import Loading from '../Loading/Loading.jsx';
 import NavBar from '../NavBar/NavBar.jsx'
-import { FullDetailsContainer, ImageContainer, DetailsContainer, Image, DogTitle, NormalDetail, TemperamentsDiv, TempContainer, Temp, CardContainer } from '../Styles/Details.style.js'
+import { FullDetailsContainer, DetailsTitle, ImageContainer, DetailsContainer, Image, DogTitle, NormalDetail, TemperamentsDiv, TempContainer, Temp, CardContainer } from '../Styles/Details.style.js'
+import { GlobalContainer } from '../Styles/Home.style.js';
 
 let Details = ({ getDogDetails, details }) => {
 
@@ -19,11 +20,13 @@ let Details = ({ getDogDetails, details }) => {
  console.log('DOG DETAILS:', details);
     if(!details.length) return (<Loading/>)
     if(!details[0].lifeSpan) return (    
-      <>
+      <GlobalContainer>
         <NavBar/>
         <FullDetailsContainer>
-          <CardContainer>
-          DOG DETAILS
+          <DetailsTitle>
+            DetailsTitle
+          </DetailsTitle>
+          {/* <CardContainer>          
             <ImageContainer>
               <Image src={details[0].image} alt='img'/>
             </ImageContainer>
@@ -35,19 +38,21 @@ let Details = ({ getDogDetails, details }) => {
               <TemperamentsDiv>Temperaments</TemperamentsDiv>     
               <TempContainer>{details[0].temperament?.split(',').slice(0,6).map(e=><Temp>{e}</Temp>)}</TempContainer>  
             </DetailsContainer>  
-          </CardContainer>    
+          </CardContainer>     */}
         </FullDetailsContainer>        
-      </>
+      </GlobalContainer>
     )
 
   return (    
-    <>
+    <GlobalContainer>
     <NavBar/>
-      <FullDetailsContainer>   
+      <FullDetailsContainer>  
+        <DetailsTitle>
+          Dog Details
+        </DetailsTitle> 
         <CardContainer>
-          DOG DETAILS
           <ImageContainer>
-          <Image src={details[0].image} alt='img'/>
+           <Image src={details[0].image} alt='img'/>
           </ImageContainer>
           <DetailsContainer>
             <DogTitle>{details[0].name}</DogTitle>        
@@ -62,7 +67,7 @@ let Details = ({ getDogDetails, details }) => {
           </DetailsContainer>
         </CardContainer>   
       </FullDetailsContainer>
-    </>
+    </GlobalContainer>
   )  
 }
 
