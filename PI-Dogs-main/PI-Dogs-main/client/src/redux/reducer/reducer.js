@@ -10,9 +10,10 @@ let initialState = {
 export default function reducer(state = initialState, action) {
     switch(action.type){
       case GET_DOGS: {
+        console.log('dogs reducer', action.payload.filter(dog=>dog.id!==232&&dog.id!==48));
         return{
         ...state,
-        dogs: action.payload,
+        dogs: action.payload.filter(dog=>dog.id!==232&&dog.id!==48&&dog.id!==128&&dog.id!==211),
         details: [],
         }
       }
@@ -61,14 +62,22 @@ export default function reducer(state = initialState, action) {
       case WEIGHT_ASC: {
         return{
         ...state,
-        filteredDogs: state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0):state.dogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0)
+        filteredDogs: state.filteredDogs?.length
+        ? state.filteredDogs.filter(item => item.name !== 'Olde English Bulldogge')
+        .sort((a, b) => !a.weight.includes('NaN') && a.weight.slice(0,2).trim() - b.weight.slice(0,2).trim())
+        : state.dogs.filter(item => item.name !== 'Olde English Bulldogge')
+        .sort((a, b) => !a.weight.includes('NaN') && a.weight.slice(0,2).trim() - b.weight.slice(0,2).trim())
         }
       }
       case WEIGHT_DESC: {
         return{
-        ...state,
-        filteredDogs: state.filteredDogs?.length?state.filteredDogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse():state.dogs.sort((a,b)=>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?1:b.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2>a.weight.split(' - ').reduce((t,e)=>t+=parseInt(e),0)/2?-1:0).reverse()
-        }
+          ...state,
+          filteredDogs: state.filteredDogs?.length
+          ? state.filteredDogs.filter(item => item.name !== 'Olde English Bulldogge')
+          .sort((a, b) => !a.weight.includes('NaN') && a.weight.slice(0,2).trim() - b.weight.slice(0,2).trim()).reverse()
+          : state.dogs.filter(item => item.name !== 'Olde English Bulldogge')
+          .sort((a, b) => !a.weight.includes('NaN') && a.weight.slice(0,2).trim() - b.weight.slice(0,2).trim()).reverse()
+          }
       }
       case SET_SOURCE: {
         return{
