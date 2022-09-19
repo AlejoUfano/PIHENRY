@@ -18,6 +18,7 @@ let Home = ({getDogs, getDogByName, setSource, nameAsc, nameDesc, weightAsc, wei
     let [emptyDb, setEmptyDb] = useState(false)
     let [notFind, setNotFind] = useState(false)
     let [refresh, setRefresh] = useState(false)
+    let [weight, setWeight] = useState('')
 
     useEffect(() => {     
       getTemperaments()    
@@ -57,7 +58,7 @@ if(!dogs.length) return (<Loading/>)
           </Pagination>
 
           <FilterComponent>
-            <Filters dogs={dogs} setEmptyDb={setEmptyDb} nameAsc={nameAsc} nameDesc={nameDesc} weightAsc={weightAsc} weightDesc={weightDesc} setRefresh={setRefresh} refresh={refresh} setSource={setSource}/>
+            <Filters dogs={dogs} weight={weight} setWeight={setWeight} setEmptyDb={setEmptyDb} nameAsc={nameAsc} nameDesc={nameDesc} weightAsc={weightAsc} weightDesc={weightDesc} setRefresh={setRefresh} refresh={refresh} setSource={setSource}/>
           </FilterComponent>  
 
         </Header>
@@ -92,7 +93,7 @@ if(!dogs.length) return (<Loading/>)
 }
 
 //========================FILTER MENU =============================
-let Filters = ({ dogs,setEmptyDb, nameAsc, setRefresh, refresh, nameDesc, weightAsc, weightDesc, setSource }) => {
+let Filters = ({ dogs,setEmptyDb, nameAsc, setRefresh, weight, setWeight, refresh, nameDesc, weightAsc, weightDesc, setSource }) => {
   return (
     <div className='dropdown'>
         <nav>
@@ -114,11 +115,19 @@ let Filters = ({ dogs,setEmptyDb, nameAsc, setRefresh, refresh, nameDesc, weight
                   <li><div>🐷 By Weight</div>
                      <ul>
                         <li><div onClick={()=>{
+                          if(weight==='ASC'){
+                            return
+                          }
                           weightAsc()
+                          setWeight('ASC')
                           setRefresh(prevRefresh => !prevRefresh)
                           }}>ASC</div></li>
                         <li><div onClick={()=>{
+                          if(weight==='DESC'){
+                            return
+                          }
                           weightDesc()
+                          setWeight('DESC')
                           setRefresh(prevRefresh => !prevRefresh)
                           }}>DESC</div></li>
                      </ul>
