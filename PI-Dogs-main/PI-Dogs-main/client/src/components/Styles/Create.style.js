@@ -110,6 +110,7 @@ export let PreviewCardContainer = styled.div`
 display: flex;
 margin-top: 10vh;
 align-self: center;
+pointer-events: none;
 `
 export let CreateButton = styled.button`
 appearance: none;
