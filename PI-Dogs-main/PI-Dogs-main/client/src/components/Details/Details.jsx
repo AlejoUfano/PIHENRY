@@ -14,30 +14,29 @@ let Details = ({ getDogDetails, details }) => {
     useEffect(() => {
      getDogDetails(id)
     }, [])
-    useEffect(() => () => {
-      },[])
+    
     if(!details.length) return (<Loading/>)
     if(!details[0].lifeSpan) return (    
       <GlobalContainer>
-        <NavBar/>
-        <FullDetailsContainer>
+      <NavBar/>
+        <FullDetailsContainer>  
           <DetailsTitle>
-            DetailsTitle
-          </DetailsTitle>
-          {/* <CardContainer>          
+            Dog Details
+          </DetailsTitle> 
+          <CardContainer>
             <ImageContainer>
-              <Image src={details[0].image} alt='img'/>
+             <Image src={details[0].image} alt='img'/>
             </ImageContainer>
             <DetailsContainer>
               <DogTitle>{details[0].name}</DogTitle>
-              <NormalDetail>Age: {details[0].age}</NormalDetail>
+              <NormalDetail>Age: {details[0].age}</NormalDetail> 
               <NormalDetail>Weight: {details[0].weight}</NormalDetail>
-              <NormalDetail>Height: {details[0].height}</NormalDetail>   
-              <TemperamentsDiv>Temperaments</TemperamentsDiv>     
-              <TempContainer>{details[0].temperament?.split(',').slice(0,6).map(e=><Temp>{e}</Temp>)}</TempContainer>  
-            </DetailsContainer>  
-          </CardContainer>     */}
-        </FullDetailsContainer>        
+              <NormalDetail>Height: {details[0].height}</NormalDetail>                 
+              <TemperamentsDiv>Temperaments</TemperamentsDiv>
+              <TempContainer>{details[0].temperament?.split(',').slice(0,6).map(e=><Temp>{e}</Temp>)}</TempContainer>
+            </DetailsContainer>
+          </CardContainer>   
+        </FullDetailsContainer>
       </GlobalContainer>
     )
 
