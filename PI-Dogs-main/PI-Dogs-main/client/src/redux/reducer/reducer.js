@@ -10,7 +10,6 @@ let initialState = {
 export default function reducer(state = initialState, action) {
     switch(action.type){
       case GET_DOGS: {
-        console.log('dogs reducer', action.payload.filter(dog=>dog.id!==232&&dog.id!==48));
         return{
         ...state,
         dogs: action.payload.filter(dog=>dog.id!==232&&dog.id!==48&&dog.id!==128&&dog.id!==211),
