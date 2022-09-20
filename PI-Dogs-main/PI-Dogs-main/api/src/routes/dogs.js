@@ -17,6 +17,19 @@ app.get('/dogs', async (req, res, next) => {
                     image:e.image.url,
                 })                
             })
+            let exists = await Dog.findOne({where:{name:'Pionono'}})
+            if(!exists){
+                await Dog.create({
+                    name: 'Pionono',
+                    age: 3,
+                    weight: '18 - 34',
+                    height: '21 - 38',
+                    image: 'https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg',
+                })
+                .then(async(dog)=>{
+                    await dog.setTempers([1,5,9])
+                })
+            } 
             let dbDogs = await Dog.findAll({include:Temper})
             if(dbDogs.length) dbDogs.map(async e=>await getDogs.push({
                 id:e.id,
