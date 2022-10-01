@@ -47,35 +47,62 @@ display: flex;
 align-self: center;
 margin-top: 2vh;
 width: 60vw;
+max-width: 900px;
 height: 60%;
+@media screen and (max-width: 800px) {
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+@media screen and (max-width: 550px) {
+width: 70vw;
+}
 `
 export let ContactContainer = styled.div`
 display: flex;
 align-self: center;
 margin-top: 10vh;
 flex-direction: column;
-height: 70vh;
-width: 80vw;
+height: auto;
+padding: 3rem;
+width: auto;
+max-width: 1100px;
 background-color: #26272b;
 border-radius: 12px;
 box-shadow: 0 3px 7px rgb(0 0 0 / 20%);
+@media screen and (max-width: 800px) {
+margin-top: 5vh;
+}
+@media screen and (max-width: 500px) {
+padding: 1.5rem;
+}
 `
 export let EmailContainer = styled.form`
 display: flex;
-width: 50%;
+width: 55%;
 justify-content: center;
 flex-direction: column;
+@media screen and (max-width: 800px) {
+  width: 85%;
+  margin-top: 1rem;
+}
+@media screen and (max-width: 550px) {
+    width: 100%;
+}
 `
 export let ContactInfoContainer = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
-width: 50%;
+width: 45%;
 flex-direction: column;
+@media screen and (max-width: 800px) {
+    width: 80%;
+}
 `
 export let ContactTitle = styled.div`
 align-self: center;
-margin-top: 8vh;
 height: fit-content;
 font-family: 'Ubuntu', sans-serif;
 display: flex;
@@ -98,12 +125,17 @@ color: #efc32e;
 align-self: center;
 margin-top: 3%;
 margin-bottom: 3%;
-font-size: 25px;
+font-size: 23px;
 text-shadow: 0 5px 7px rgb(239 194 46 / 10%);
 transition: all 0.4s 0s ease;
 &:hover{
     text-shadow: 0 5px 9px rgb(239 194 46 / 30%); 
     color: #f7cb36;
+}
+@media screen and (max-width: 800px) {
+ height: auto;
+ align-items: center;
+ text-align: center;
 }
 `
 export let SendButton = styled.button`
@@ -140,6 +172,15 @@ width: 45%;
 margin-top: .6vw;
 background-color: #e6e6e6;
 border-radius: 3px;
+@media screen and (max-width: 800px) {
+width: 70%;
+}
+@media screen and (max-width: 600px) {
+width: 80%;
+@media screen and (max-width: 400px) {
+width: 90%;
+}
+}
 `
 export let ContactInfo = styled.div`
 display: flex;
@@ -163,7 +204,16 @@ display: flex;
 flex-direction: row;
 width: 40%;
 margin-top: .6vw;
-justify-content: space-around;
+justify-content: space-between;
+@media screen and (max-width: 1000px) {
+    width: 50%;
+}
+@media screen and (max-width: 800px) {
+    justify-content: space-around;
+}
+@media screen and (max-width: 400px) {
+    width: 65%;
+}
 `
 export let Input = styled.input`
 display: block;
