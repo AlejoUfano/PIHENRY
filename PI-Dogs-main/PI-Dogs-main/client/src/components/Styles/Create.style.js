@@ -3,13 +3,16 @@ import { IoClose } from 'react-icons/io5'
 
 export let CreateContainer = styled.div`
 display: flex;
-position: absolute;
-top: 15%;
-bottom: 10%;
-height: 85%;
-width: 95%;
+padding: 3rem;
 transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-justify-content: center;
+justify-content: space-around;
+align-items: center;
+@media screen and (max-width: 900px) {
+padding: 1rem;
+}
+@media screen and (max-width: 700px) {
+flex-direction: column;
+}
 `
 export let FormTitle = styled.div`
 display: flex;
@@ -40,12 +43,20 @@ align-items: center;
 justify-content: center;
 font-weight: 500;
 `
+export let FormInputContainer = styled.div`
+display: flex;
+width: 60%;
+flex-direction: column;
+@media screen and (max-width: 700px) {
+width: 80%;
+}
+`
 
 export let FormInput = styled.input`
 display: block;
 padding: .2vw;
 background-color: #969696;
-width: 30vw;
+width: 100%;
 font-family: inherit;
 font-size: 15px;
 font-weight: inherit;
@@ -71,7 +82,7 @@ padding: .2vw;
 display: flex;
 margin-top: .1vh;
 position: relative;
-width: 12vw;
+width: 35%;
 margin-bottom: .6vh;
 background-color: #969696;
 font-family: inherit;
@@ -96,9 +107,14 @@ box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
 `
 export let HeightWeightContainer = styled.div` 
 display: flex;
-width: 67.5%;
+width: 61%;
+margin-left: 1%;
 align-self: center;
 justify-content: space-between;
+@media screen and (max-width: 700px) {
+width: 81%;
+margin-left: 1%;
+}
 `
 export let SelectContainer = styled.div`
 display: flex;
@@ -111,6 +127,9 @@ display: flex;
 margin-top: 10vh;
 align-self: center;
 pointer-events: none;
+@media screen and (max-width: 700px) {
+margin-top: 1vh;
+}
 `
 export let CreateButton = styled.button`
 appearance: none;
@@ -135,15 +154,16 @@ font-size: 25px;
 export let FormContainer = styled.form`
 border-radius: 12px;
 display: flex;
-width: 45vw;
+width: 50vw;
 height: 80vh;
-margin: 0px 40px;
+min-height: 550px;
 flex-direction: column;
 background-color: #26272b;
 box-shadow: 0px 6px 15px rgb(0 0 0 / 50%);
 transition: all 0.4s 0s ease;
 justify-content: center;
 align-items: center;
+max-width: 960px;
 &:hover{
     box-shadow: 0px 6px 20px rgb(0 0 0 / 70%);
 }
@@ -151,29 +171,49 @@ align-items: center;
     text-shadow: 0 5px 9px rgb(239 194 46 / 30%); 
     color: #f7cb36;
 }
+@media screen and (max-width: 900px) {
+width: 55vw;
+}
+@media screen and (max-width: 700px) {
+width: 80vw;
+}
 `
 export let SelectDiv = styled.div`
 display: flex;
-width: 43vw;
-margin-right: .65vw;
+width: 85%;
 flex-direction: column;
+@media screen and (max-width: 700px) {
+width: 113%;
+}
 `
 export let PreviewContainer = styled.div`
 display: flex;
 width: 30vw;
-height: 80vh;
+height: auto;
 border-radius: 12px;
 flex-direction: column;
 justify-content: center;
 background-color: #26272b;
 box-shadow: 0px 6px 15px rgb(0 0 0 / 50%);
 transition: all 0.4s 0s ease;
+padding-top: .5rem;
+max-width: 570px;
 &:hover{
     box-shadow: 0px 6px 20px rgb(0 0 0 / 70%);
 }
 &:hover ${PreviewTitle} {
     text-shadow: 0 5px 9px rgb(239 194 46 / 30%); 
     color: #f7cb36;
+}
+@media screen and (max-width: 900px) {
+width: 35vw;
+}
+@media screen and (max-width: 700px) {
+width: 80vw;
+height: auto;
+justify-content: center;
+align-items: center;
+margin-top: 1rem;
 }
 `
 export let Temp = styled.div`
@@ -203,7 +243,6 @@ width: auto;
 height: 20px;
 color: #000;
 transition: all 0.4s 0s ease;
-border: 1px solid red;
 &:hover{
     transform: scale(1.1);
 }
