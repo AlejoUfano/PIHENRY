@@ -9,7 +9,7 @@ export default function Dropdown({temperaments, setTemps, temps, handleTemp}) {
   return (
       <Details>        
 	      <summary class='radios'>          
-          {!temps?.length?'Temperaments':temperaments.map((e,index)=><input type='radio' name='item' id={`item${index+1}`} title={e}/>)}	
+          {!temps?.length?'Temper':temperaments.map((e,index)=><input type='radio' name='item' id={`item${index+1}`} title={e}/>)}	
 	      </summary>
 	      <ul class='list'>
           {temperaments.map((e,index)=><li onClick={()=>{
