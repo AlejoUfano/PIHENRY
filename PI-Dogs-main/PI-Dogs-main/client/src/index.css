@@ -35,36 +35,126 @@ body{
   z-index: 10;
   position: fixed;
   margin-left: 76.1vw;
-  margin-top: 8.8vh;
+  margin-top: 8.6vh;
 }
-@media (min-height: 1151px) and (max-height: 1250px) {
-  .filter-buttons {
-    margin-top: 7vh;
-  }
-}
-@media (min-height: 1051px) and (max-height: 1150px) {
-  .filter-buttons {
-    margin-top: 8vh;
-  }
-}
-@media (min-height: 951px) and (max-height: 1050px) {
+@media screen and (max-height: 850px) {
   .filter-buttons {
     margin-top: 9vh;
   }
 }
-@media (min-height: 851px) and (max-height: 950px) {
+@media screen and (max-height: 800px) {
   .filter-buttons {
     margin-top: 9.5vh;
   }
 }
-@media (min-height: 751px) and (max-height: 850px) {
+@media screen and (max-height: 750px) {
   .filter-buttons {
-    margin-top: 10vh;
+    margin-top: 10.5vh;
   }
 }
-@media (min-height: 650px) and (max-height: 750px) {
+@media screen and (max-height: 700px) {
   .filter-buttons {
-    margin-top: 11vh;
+    margin-top: 10.3vh;
+  }
+}
+@media screen and (max-height: 650px) {
+  .filter-buttons {
+    margin-top: 11.5vh;
+  }
+}
+@media screen and (max-height: 600px) {
+  .filter-buttons {
+    margin-top: 12.4vh;
+  }
+}
+@media screen and (max-height: 550px) {
+  .filter-buttons {
+    margin-top: 14vh;
+  }
+}
+@media screen and (max-height: 500px) {
+  .filter-buttons {
+    margin-top: 15vh;
+  }
+}
+@media screen and (max-height: 450px) {
+  .filter-buttons {
+    margin-top: 16vh;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .filter-buttons {
+    margin-left: 18.5vw;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .filter-buttons {
+    margin-left: 18.3vw;
+  }
+}
+@media screen and (max-width: 900px) {
+  .filter-buttons {
+    margin-left: 18.1vw;
+  }
+}
+@media screen and (max-width: 800px) {
+  .filter-buttons {
+    margin-left: 17.9vw;
+  }
+}
+@media screen and (max-width: 750px) {
+  .filter-buttons {
+    margin-left: 17.7vw;
+  }
+}
+@media screen and (max-width: 700px) {
+  .filter-buttons {
+    margin-left: 17.5vw;
+  }
+}
+@media screen and (max-width: 650px) {
+  .filter-buttons {
+    margin-left: 7vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .filter-buttons {
+    margin-left: 6.3vw;
+  }
+}
+@media screen and (max-width: 550px) {
+  .filter-buttons {
+    margin-left: 6.1vw;
+  }
+}
+@media screen and (max-width: 500px) {
+  .filter-buttons {
+    margin-left: 5.8vw;
+  }
+}
+@media screen and (max-width: 450px) {
+  .filter-buttons {
+    margin-left: 5vw;
+  }
+}
+@media screen and (max-width: 400px) {
+  .filter-buttons {
+    margin-left: 4.7vw;
+  }
+}
+@media screen and (max-width: 350px) {
+  .filter-buttons {
+    margin-left: 4vw;
+  }
+}
+@media screen and (max-width: 300px) {
+  .filter-buttons {
+    margin-left: 2.3vw;
+  }
+}
+@media screen and (max-width: 250px) {
+  .filter-buttons {
+    margin-left: 1vw;
   }
 }
 .dropdown{
