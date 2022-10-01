@@ -17,6 +17,17 @@ flex-direction: column;
 export let Header = styled.div`
 display: flex;
 padding-top: 3vh;
+@media screen and (max-width: 1100px) {
+  justify-content: center;
+  width: 100%;
+  flex-direction: row-reverse;
+  padding: 1rem;
+}
+@media screen and (max-width: 650px) {
+  width: 100%;
+  flex-direction: row-reverse;
+  padding: 1rem;
+}
 `
 export let Pagination = styled.div`
 display: flex;
@@ -24,6 +35,16 @@ align-self: center;
 width: 56vw;
 justify-content: flex-end;
 margin-right: 20vw;
+@media screen and (max-width: 1100px) {
+  width: 45vw;
+  margin-right: 14vw;
+}
+@media screen and (max-width: 650px) {
+width: 40vw;
+justify-content: center;
+margin-right: 30vw;
+margin-left: 10vw;
+}
 `
 export let PaginationButton = styled.button`
 display: flex;
@@ -54,10 +75,12 @@ margin-top: .5vh;
 `
 export let HomeBody = styled.div`
 display: flex;
+@media screen and (max-width: 650px) {
+flex-direction: column;
+}
 `
 export let Test = styled.div`
 display: flex;
-border: 1px solid red;
 padding: 2% 4%;
 width: 50%;
 height: 30px;
@@ -66,6 +89,10 @@ export let Form = styled.form`
 display: flex;
 width: 15.2vw;
 height: 6vh;
+@media screen and (max-width: 850px) {
+  width: 85%;
+  align-self: center;
+}
 `
 export let OptionsContainer = styled.div`
 align-items: flex-end;
@@ -74,6 +101,14 @@ display: flex;
 width: 25vw;
 height: 70vh;
 padding-top: 10vh;
+@media screen and (max-width: 650px) {
+width: 100%;
+flex-direction: row;
+padding: 0;
+height: max-content;
+justify-content: center;
+align-items: center;
+}        
 `
 export let HomeCardsContainer = styled.div`
 display: flex;
@@ -82,6 +117,9 @@ flex-direction: row;
 flex-wrap: wrap;
 justify-content: center;
 transition: all 0.4s 0s ease;
+@media screen and (max-width: 650px) {
+  width: 100%;
+}
 `
 export let Icon = styled.div``
 Icon.Close = styled(IoClose)`
@@ -149,6 +187,9 @@ margin-left: 150px;
 &::placeholder{
   font-weight: 900;
 }
+/* @media screen and (max-width: 800px) {
+  margin-left: 0;
+} */
 `
 export let SearchBar = styled.input`
 display: flex;
@@ -160,6 +201,7 @@ height: 6vh;
 font-size: 17px;
 box-shadow: 0px 8px 15px rgba(0,0,0,0.1);
 border: 2px solid #4f4f4f;
+margin-left: 0;
 &::placeholder{
   font-family: 'Lato', sans-serif;
   font-weight: 100;
@@ -167,6 +209,11 @@ border: 2px solid #4f4f4f;
 }
 &:hover{
   border: 2px solid #000;
+}
+@media screen and (max-width: 650px) {
+margin: 0;
+padding: 0;
+width: 30vw;
 }
 `
 export let CreateText = styled.div`
@@ -186,7 +233,7 @@ display: flex;
 justify-content: center;
 outline: none;
 transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-font-size: 25px;
+font-size: 23px;
 width: 15vw;
 height: 6vh;
 margin-top: 5vh;
@@ -205,5 +252,9 @@ align-items: center;
 }
 &:hover ${CreateText}{
   color: #fff;
+}
+@media screen and (max-width: 850px) {
+    width: 85%;
+    align-self: center;
 }
 `

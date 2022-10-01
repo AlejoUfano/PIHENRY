@@ -19,10 +19,15 @@ let Home = ({getDogs, getDogByName, setSource, nameAsc, nameDesc, weightAsc, wei
     let [notFind, setNotFind] = useState(false)
     let [refresh, setRefresh] = useState(false)
     let [weight, setWeight] = useState('')
+    const [width, setWidth] = useState(window.innerWidth)
 
     useEffect(() => {     
       getTemperaments()    
       getDogs()
+      function handleResize() {
+        setWidth(window.innerWidth)    
+  }
+      window.addEventListener('resize', handleResize)
     },[])
 
 let handleChange = (e) => {
@@ -73,9 +78,9 @@ if(!dogs.length) return (<Loading/>)
 
               <Dropdown setTemps={setTemps} temps={temps} temperaments={temperaments} handleTemp={handleTemp}/> 
 
-              <CreateDog>
+              {width>650 && <CreateDog>
                 <Link to='/create'><CreateText>Create Dog</CreateText></Link> 
-              </CreateDog>
+              </CreateDog>}
 
             </OptionsContainer>
           
