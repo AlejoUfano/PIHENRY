@@ -4,7 +4,7 @@ import { postDog, getTemperaments, getDogs } from '../../redux/actions/actions.j
 import NavBar from '../NavBar/NavBar.jsx'
 import SuccessPopUp from '../SuccessPopUp/SuccessPopUp.jsx'
 import { Card } from '../Card/Card.jsx';
-import { CreateContainer, TempsContainer, SelectDiv, FormContainer, FormTitle, CreateButton, PreviewTitle, Temp, PreviewCardContainer, FormInput, HeightWeight, HeightWeightContainer, ErrorMessage, PreviewContainer } from '../Styles/Create.style.js'
+import { CreateContainer, FormInputContainer, TempsContainer, SelectDiv, FormContainer, FormTitle, CreateButton, PreviewTitle, Temp, PreviewCardContainer, FormInput, HeightWeight, HeightWeightContainer, ErrorMessage, PreviewContainer } from '../Styles/Create.style.js'
 import DropdownMulti from '../DropdownMulti/DropdownMulti.jsx';
 
 let Create = ({ postDog, getTemperaments, temperaments, dogs }) => {
@@ -101,10 +101,10 @@ let Create = ({ postDog, getTemperaments, temperaments, dogs }) => {
       <CreateContainer>        
         <FormContainer>
           <FormTitle>Create your dog!</FormTitle>
-                <div>
+                <FormInputContainer>
                   <FormInput type='text' placeholder='Name' id='name' name='name'   onChange={(e)=>{handleChange(e)}}/>
                   <ErrorMessage>{errors.name}</ErrorMessage>
-                </div>
+                </FormInputContainer>
 
                 <HeightWeightContainer>
                   <HeightWeight type='number' placeholder='Min height' name='minHeight'  min='0' onChange={(e)=>{handleChange(e)}}/>
@@ -118,15 +118,15 @@ let Create = ({ postDog, getTemperaments, temperaments, dogs }) => {
                 </HeightWeightContainer>
                 <ErrorMessage>{errors.weight}</ErrorMessage>
                 
-                <div>
+                <FormInputContainer>
                   <FormInput type='number' placeholder='Age' name='age'   min='0' onChange={(e)=>{handleChange(e)}}/>
                   <ErrorMessage>{errors.age}</ErrorMessage>
-                </div>
+                </FormInputContainer>
 
-                <div>
+                <FormInputContainer>
                   <FormInput type='text' placeholder='Image URL' name='image'   onChange={(e)=>{handleChange(e)}}/>
                   <ErrorMessage>{errors.image}</ErrorMessage>
-                </div>
+                </FormInputContainer>
 
                 <TempsContainer>
                   {temps?.map(e=><><Temp onClick={()=>setTemps(temps.filter(t=>t!==e))}>{temperaments[e-1]} ✖️</Temp></>)}
