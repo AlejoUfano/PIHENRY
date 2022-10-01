@@ -12,8 +12,14 @@ let NavBar = ({ getDogs, setPage, setTemps, filteredDogs, dogs, resetFilters }) 
   
   let [extendNav, setExtendNav] = useState(false);
   const [isDisplayed, setIsDisplayed] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth)
+  
 
 useEffect(() => {
+  function handleResize() {
+    setWidth(window.innerWidth)    
+}
+  window.addEventListener('resize', handleResize)
   setInterval(() => {
     setIsDisplayed(false);
   }, 1500);
@@ -51,6 +57,7 @@ useEffect(() => {
         <NavExpandedMenu>
           <NavLinkExtended to='/'>LANDING</NavLinkExtended>
           <NavLinkExtended to='/contact'>CONTACT</NavLinkExtended>
+          {width<651 && <NavLinkExtended to='/create'>CREATE DOG</NavLinkExtended>}
         </NavExpandedMenu>
       )}
       

@@ -8,12 +8,21 @@ margin-top: 3px;
 display: flex;
 align-self: center;
 text-shadow: 1px 1px 3px rgb(0 0 0 / 30%);
+@media screen and (max-width: 900px) {
+    font-size: 15px;
+}
+@media screen and (max-width: 900px) {
+    font-size: 13px;
+}
 `
 export let CardImage = styled.img`
 object-fit: cover;
 height: 60%;
 width: 100%;
 border-radius: 12px;
+@media screen and (max-width: 900px) {
+    
+}
 `
 export let TemperamentDiv = styled.div`
 font-family: 'Ubuntu', sans-serif;
@@ -28,6 +37,26 @@ width: max-content;
 background-color: #e6e6e6;
 box-shadow: 0 2px 5px rgb(1 1 1 / 30%);
 transition: all 0.4s 0s ease;
+text-align: center;
+align-items: center;
+justify-content: center;
+@media screen and (max-width: 900px) {
+    font-size: 13px;
+    padding: 6px 6px;
+    margin: 2px 2px;
+    height: max-content;
+}
+@media screen and (max-width: 700px) {
+    font-size: 11px;
+    padding: 4px 6px;
+    margin: 2px 2px;
+    height: max-content;
+}
+@media screen and (max-width: 500px) {
+    padding: 4px 6px;
+    margin: 2px 2px;
+    height: max-content;
+}
 `
 export let TempContainer = styled.div`
 color: #2e2e2c;
@@ -40,6 +69,18 @@ flex-wrap: wrap;
 justify-content: space-around;
 text-shadow: 1px 1px 3px rgb(0 0 0 / 30%);
 transition: all 0.4s 0s ease;
+@media screen and (max-width: 900px) {
+    height: 22%;
+    width: 95%;
+}
+@media screen and (max-width: 700px) {
+    height: 22%;
+    width: 100%;
+}
+@media screen and (max-width: 500px) {
+    height: 23%;
+    width: 100%;
+}
 `
 
 export let Weight = styled.div`
@@ -50,6 +91,17 @@ font-size: 15px;
 display: flex;
 align-self: center;
 text-shadow: 1px 1px 3px rgb(0 0 0 / 30%);
+@media screen and (max-width: 900px) {
+    margin-top: 4px;
+    font-size: 13px;
+}
+@media screen and (max-width: 700px) {
+    margin-top: 3px;
+    font-size: 11px;
+}
+@media screen and (max-width:  500px) {
+    margin-top: 2px;
+}
 `
 export let CardContainer = styled.div`
 display: flex;
@@ -80,5 +132,16 @@ transition: all 0.4s 0s ease;
     color: #000;
     background-color: #dbdbdb;
 }
-
+@media screen and (max-width: 900px) {
+    width: 230px;
+    height: 300px;
+}
+@media screen and (max-width: 700px) {
+    width: 200px;
+    height: 260px;
+}
+@media screen and (max-width: 500px) {
+    width: 200px;
+    height: 250px;
+}
 `
