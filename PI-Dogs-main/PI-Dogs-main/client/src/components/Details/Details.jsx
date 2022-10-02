@@ -24,9 +24,7 @@ let Details = ({ getDogDetails, details }) => {
             Dog Details
           </DetailsTitle> 
           <CardContainer>
-            <ImageContainer>
-             <Image src={details[0].image} alt='img'/>
-            </ImageContainer>
+          <ImageContainer src={details[0].image} alt='img'/>
             <DetailsContainer>
               <DogTitle>{details[0].name}</DogTitle>
               <NormalDetail>Age: {details[0].age}</NormalDetail> 
@@ -48,9 +46,7 @@ let Details = ({ getDogDetails, details }) => {
           Dog Details
         </DetailsTitle> 
         <CardContainer>
-          <ImageContainer>
-           <Image src={details[0].image} alt='img'/>
-          </ImageContainer>
+          <ImageContainer src={details[0].image} alt='img'/>
           <DetailsContainer>
             <DogTitle>{details[0].name}</DogTitle>        
             {details[0].origin?<NormalDetail>Origin: {details[0].origin}</NormalDetail>:null}  
